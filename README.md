@@ -8,7 +8,7 @@ $ make
 
 # Usage
 ```sh
-$ ./gsgd {graph_directory} {epsilon} {mu} {gamma} output[optional]
+$ ./gsgd {graph_directory} {epsilon} {mu} {gamma} output[optional] cluster[optional]
 ```
 
 # Note
