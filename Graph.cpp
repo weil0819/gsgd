@@ -1,5 +1,5 @@
 /*
- * Preprocess.cpp
+ * Graph.cpp
  *
  *  Created on: 02 Sept, 2019
  *      Author: Wesley
@@ -14,6 +14,7 @@ Graph::Graph(const char *_dir) {
 	n = m = 0;
 
 	eps_a2 = eps_b2 = miu = 0;
+	dist = 0;
 
 	pstart = NULL;
 	edges = NULL;
@@ -107,7 +108,7 @@ void Graph::read_graph() {
 
 		pstart[i+1] = pstart[i] + degree[i];
 
-		++ degree[i];
+		++ degree[i];		// closed degree = open degree + 1
 	}
 
 	delete[] buf;
@@ -115,17 +116,27 @@ void Graph::read_graph() {
 	fclose(f);
 
 	// Read-3: read location file.
-	f = open_file((dir + string("/b_loc.bin")).c_str(), "rb");
+	f = open_file((dir + string("/loc.txt")).c_str(), "r");
 
+	if(ploc == NULL) ploc = new float[2*n];
+	ui ind = 0;
+	while(!feof(f)){
+		float a, b;
+		fscanf(f, "%f %f", &a, &b);
+		ploc[ind++] = a;
+		ploc[ind++] = b;
+	}
+
+	fclose(f);
 }
 
 
-void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int mu) {
+void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) {
 	if(cid == NULL) cid = new int[n];		// assign each node a cluster ID
 	for(ui u = 0; u < n; u++) cid[u] = n;	// initialize cluster ID
 
 	for(ui u = 0; u < n; u++) {
-		if(similar_degree[u] >= mu) {		// u is a core node
+		if(similar_degree[u] >= miu) {		// u is a core node
 			int x = find_root(u);
 			if(u < cid[x]) cid[x] = u;		// update cluster ID, which should be minimal ID in cluster
 		}
@@ -135,10 +146,10 @@ void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int mu) {
 	noncore_cluster.reserve(n);
 
 	for(ui i = 0;i < n;i ++) {
-		if(similar_degree[i] >= mu) {
+		if(similar_degree[i] >= miu) {		// i should be core node
 			for(ui j = pstart[i];j < pstart[i+1];j ++) {
 				// when edges[j] is also a core node or i and edges[j] are in same cluster
-				if(similar_degree[edges[j]] >= mu||pa[i] == pa[edges[j]]) continue;
+				if(similar_degree[edges[j]] >= miu||pa[i] == pa[edges[j]]) continue;
 
 				if(min_cn[j] >= 0) {
 					min_cn[j] = naive_similar_check(i, edges[j], eps_a2, eps_b2);
@@ -150,10 +161,11 @@ void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int mu) {
 	}
 }
 
-void Graph::output(const char *eps_s, const char *miu) {
+
+void Graph::output(const char *eps_s, const char *miu, const char *dist) {
 	printf("\t*** Start write result into disk!\n");
 
-	string out_name = dir + "/result-" + string(eps_s) + "-" + string(miu) + ".txt";
+	string out_name = dir + "/result-" + string(eps_s) + "-" + string(miu) + "-" + string(dist) + ".txt";
 	FILE *fout = open_file(out_name.c_str(), "w");
 
 	fprintf(fout, "c/n vertex_id cluster_id\n");
@@ -173,10 +185,10 @@ void Graph::output(const char *eps_s, const char *miu) {
 }
 
 
-void Graph::cluster_count(const char *eps_s, const char *miu) {
+void Graph::cluster_count(const char *eps_s, const char *miu, const char *dist) {
 	printf("\t*** Start write clusters into disk!\n");
 
-	string out_name = dir + "/cluster-" + string(eps_s) + "-" + string(miu) + ".txt";
+	string out_name = dir + "/cluster-" + string(eps_s) + "-" + string(miu) + "-" + string(dist) + ".txt";
 	FILE *fout = open_file(out_name.c_str(), "w");
 
 	// fprintf(fout, "cluster_id \t #vertex \t vertex_id \n");
@@ -215,8 +227,25 @@ void Graph::cluster_count(const char *eps_s, const char *miu) {
 
 }
 
-void Graph::baseline(const char *eps_s, int miu) {
-	// Step-1: Compute eps value.
+void Graph::baseline(const char *eps_s, int miu, int dist) {
+	// Pruning-1: prune all neighbors whose distance is larger than dist.
+	for(ui u = 0; u < n; u++) {
+		for(ui i = pstart[u]; i < pstart[u+1]; i++) {
+			ui v = edges[i];
+			float ux = ploc[2*u], uy = ploc[2*u+1];
+			float vx = ploc[2*v], vy = ploc[2*v+1];
+			double dis = (ux-vx)*(ux-vx) + (uy-vy)*(uy-vy);
+			if(dis > (double)dist*dist) {
+				// Mark v as empty and degree minus 1.
+				edges[i] = u;	// mark u's neighbor same as u
+				--degree[u];
+
+				// cross-link to find (v,u) ???
+			}
+		}
+	}
+
+	// Step-1: Compute eps value (including eps_a2 and eps_b2).
 	int eps_a2 = 0, eps_b2 = 0;
 	get_eps(eps_s, eps_a2, eps_b2);
 	eps_a2 *= eps_a2;
@@ -226,16 +255,24 @@ void Graph::baseline(const char *eps_s, int miu) {
 	if(similar_degree == NULL) similar_degree = new int[n];
 	memset(similar_degree, 0, sizeof(int)*n);
 
-	for(ui u = 0; u < n; u++) {			// scan v
+	for(ui u = 0; u < n; u++) {			// scan u 
+		if(degree[u] < miu) {			// degree[u] is an upper bound of the size of its eps-neighorhood
+			similar_degree[u] = -1;		 
+			continue ;
+		}
 		for(ui i = pstart[u]; i < pstart[u+1]; i++) {
-			ui v = edges[i];			// u is v's neighbor 
+			ui v = edges[i];			// v is u's neighbor 
 			if(min_cn[i] < 0) continue;	// min_cn[i] means the i-th position of edges 
+			if(u == v) {				// for far neighbor, omit computing the similarity 
+				min_cn[i] = -2;
+				continue ;
+			} 
 			min_cn[i] = naive_similar_check(u, v, eps_a2, eps_b2);
 			if(min_cn[i] == -1) ++similar_degree[u];	// compute N_eps[u]
 		}
 	}
 
-	// Step-3: Initialize pa and rank.
+	// Step-3: Initialize pa and rank for the disjoint-set data structure.
 	if(pa == NULL) pa = new int[n];
 	if(rank == NULL) rank = new int[n];
 
@@ -248,8 +285,8 @@ void Graph::baseline(const char *eps_s, int miu) {
 	for(ui u = 0; u < n; u++) {
 		if(similar_degree[u] < miu) continue;	// u is not a core node
 		for(ui i = pstart[u]; i < pstart[u+1]; i++) {
-			ui v = edges[i];
-			if(similar_degree[v] < miu) continue;	// v is not a core node
+			ui v = edges[i]; 			
+			if(u == v || similar_degree[v] < miu) continue;	// // v is marked node or v is not a core node 
 			// If v is also a core node and sim(u,v)>=eps, merge them into one cluster.
 			if(min_cn[i] == -1) my_union(u,v);
 		}
@@ -257,15 +294,30 @@ void Graph::baseline(const char *eps_s, int miu) {
 
 	// Step-5: Cluster non-core nodes.
 	cluster_noncore_vertices(eps_a2, eps_b2, miu);
+
+
+	// Step-6: Return qualified subgraph.
+
+
+
 }
 
 
 int Graph::naive_similar_check(int u, int v, int eps_a2, int eps_b2) {
-	int du = degree[u], dv = degree[v];
+	int du = degree[u], dv = degree[v];		// du and dv are 
 
 	ui i = pstart[u], j = pstart[v];
 	int cn = 2;	// number of common neighbor between u and v
-	while(i < pstart[u+1]&&j < pstart[v+1]) {
+	while(i < pstart[u+1]&&j < pstart[v+1]) { 
+		if(edges[i] == u) {
+			++ i;
+			continue ;
+		}
+		if(edges[j] == v) {
+			++ j;
+			continue ;
+		}
+
 		if(edges[i] < edges[j]) ++ i;
 		else if(edges[i] > edges[j]) ++ j;
 		else {

@@ -1,5 +1,5 @@
 /*
- * Preprocess.cpp
+ * main.cpp
  *
  *  Created on: 02 Sept, 2019
  *      Author: Wesley
@@ -9,16 +9,16 @@
 #include "Graph.h"
 
 void usage() {
-	printf("Usage: [1]exe [2]graph-dir [3]similarity-threshold [4]density-threshold [5 optional]output [6 optional] cluster\n");
+	printf("Usage: [1]exe [2]graph-dir [3]similarity-threshold [4]density-threshold  [5]distance-threshold [6 optional]output [7 optional] cluster\n");
 }
 
 int main(int argc, char *argv[]) {
-	if(argc < 4) {
+	if(argc < 5) {
 		usage() ;
 		return 0;
 	}
 
-	printf("**** Graph Clustering (Release): %s, %s, %s *** ", argv[1], argv[2], argv[3]);
+	printf("**** Geo-Social Group Detection (Release): %s, %s, %s, %s *** ", argv[1], argv[2], argv[3], argv[4]);
 	printf("\n");
 
 #ifdef _LINUX_
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 	end1 = clock();
 #endif
 
-	graph->baseline(argv[2], atoi(argv[3]));
+	graph->baseline(argv[2], atoi(argv[3]), atoi(argv[4]));
 
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
@@ -57,9 +57,9 @@ int main(int argc, char *argv[]) {
 	printf("Total time without IO: %lld microsecond\n", mtime-mtime1);
 #endif
 
-	if(argc >= 5 && strcmp(argv[4], "output") == 0) graph->output(argv[2], argv[3]);
+	if(argc >= 5 && strcmp(argv[5], "output") == 0) graph->output(argv[2], argv[3], argv[4]);
 
-	if(argc >= 6 && strcmp(argv[5], "cluster") == 0) graph->cluster_count(argv[2], argv[3]);
+	if(argc >= 6 && strcmp(argv[6], "cluster") == 0) graph->cluster_count(argv[2], argv[3], argv[4]);
 
 	return 0;
 }

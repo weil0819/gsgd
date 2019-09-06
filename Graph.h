@@ -1,5 +1,5 @@
 /*
- * Preprocess.cpp
+ * Graph.h
  *
  *  Created on: 02 Sept, 2019
  *      Author: Wesley
@@ -17,7 +17,8 @@ private:
 	string dir; //input graph directory
 	ui n, m; //number of nodes and edges of the graph
 
-	int eps_a2, eps_b2, miu; // eps_a2/eps_b2 = eps^2
+	int eps_a2, eps_b2, miu; // eps_a2/eps_b2 = eps^2 
+	int dist;	// threshold of distance
 
 	ui *pstart; //offset of neighbors of nodes
 	int *edges; //adjacent ids of edges
@@ -31,7 +32,7 @@ private:
 	int *degree;
 	int *similar_degree; //number of adjacent edges with similarity no less than epsilon
 
-	double *ploc;	// location of nodes
+	float *ploc;	// location of nodes
 
 	vector<pair<int,int> > noncore_cluster;
 
@@ -41,13 +42,13 @@ public:
 
 	void read_graph() ;
 
-	void baseline(const char *eps_s, int miu) ;
+	void baseline(const char *eps_s, int miu, int dist) ;
 
-	void cluster_noncore_vertices(int eps_a2, int eps_b2, int mu) ;
+	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) ;
 
-	void output(const char *eps_s, const char *miu) ; 
+	void output(const char *eps_s, const char *miu, const char *dist) ; 
 
-	void cluster_count(const char *eps_s, const char *miu) ;
+	void cluster_count(const char *eps_s, const char *miu, const char *dist) ;
 
 private:
 	int naive_similar_check(int u, int v, int eps_a2, int eps_b2) ;
