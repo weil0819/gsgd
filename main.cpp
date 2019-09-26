@@ -9,16 +9,16 @@
 #include "Graph.h"
 
 void usage() {
-	printf("Usage: [1]exe [2]graph-dir [3]similarity-threshold [4]density-threshold  [5]distance-threshold [6 optional]output [7 optional] cluster\n");
+	printf("Usage: [0]exe [1]alg [2]graph-dir [3]similarity-threshold [4]density-threshold [5]distance-threshold [6 optional]output [7 optional] cluster\n");
 }
 
 int main(int argc, char *argv[]) {
-	if(argc < 5) {
+	if(argc < 6) {
 		usage() ;
 		return 0;
 	}
 
-	printf("**** Geo-Social Group Detection (Release): %s, %s, %s, %s *** ", argv[1], argv[2], argv[3], argv[4]);
+	printf("**** Geo-Social Group Detection (Release): %s, %s, %s, %s, %s *** ", argv[1], argv[2], argv[3], argv[4], argv[5]);
 	printf("\n");
 
 #ifdef _LINUX_
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 	start = clock();
 #endif
 
-	Graph *graph = new Graph(argv[1]);
+	Graph *graph = new Graph(argv[2]);
 	graph->read_graph();
 	printf("\t*** Finished loading graph!\n");
 
@@ -44,7 +44,9 @@ int main(int argc, char *argv[]) {
 	end1 = clock();
 #endif
 
-	graph->baseline(argv[2], atoi(argv[3]), atoi(argv[4]));
+	if(strcmp(argv[1], "gsgd") == 0) graph->gsgd(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "dgcd") == 0) graph->dgcd(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else usage();
 
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
@@ -54,12 +56,12 @@ int main(int argc, char *argv[]) {
 	useconds = end.tv_usec - start.tv_usec;
 	mtime = seconds*1000000 + useconds;
 
-	printf("Total time without IO: %lld microsecond\n", mtime-mtime1);
+	printf("Total time without IO: %lld microsecond, %lf millisecond, %lf second\n", mtime-mtime1, (float)(mtime-mtime1)/1000, (float)(mtime-mtime1)/1000000);
 #endif
 
-	if(argc >= 5 && strcmp(argv[5], "output") == 0) graph->output(argv[2], argv[3], argv[4]);
+	if(argc >= 5 && strcmp(argv[6], "output") == 0) graph->output(argv[3], argv[4], argv[5]);
 
-	if(argc >= 6 && strcmp(argv[6], "cluster") == 0) graph->cluster_count(argv[2], argv[3], argv[4]);
+	if(argc >= 6 && strcmp(argv[7], "cluster") == 0) graph->cluster_count(argv[3], argv[4], argv[5]);
 
 	return 0;
 }
