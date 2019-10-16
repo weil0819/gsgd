@@ -101,6 +101,7 @@ void Graph::read_graph() {
 	if(pstart == NULL) pstart = new ui[n+1];
 	if(edges == NULL) edges = new int[m];
 	if(reverse == NULL) reverse = new ui[m];
+	// if(cid == NULL) cid = new int[n];
 	if(min_cn == NULL) min_cn = new int[m];
 	memset(min_cn, 0, sizeof(int)*m);
 
@@ -239,6 +240,10 @@ void Graph::cluster_count(const char *eps_s, const char *miu, const char *dist) 
 
 
 void Graph::gsgd(const char *eps_s, int miu, int dist) {
+#ifdef _LINUX_
+	struct timeval start, end1, end;
+	gettimeofday(&start, NULL);
+#endif
 	// Pruning-1: prune all neighbors whose distance is larger than dist.
 	// Pruning-2: Find edge (u,v) in N[v] using binary search, and build cross link between (u,v) and (v,u).
 	prune_and_cross_link(dist);
@@ -307,6 +312,15 @@ void Graph::gsgd(const char *eps_s, int miu, int dist) {
 	// Step-5: Cluster non-core nodes.
 	cluster_noncore_vertices(eps_a2, eps_b2, miu);
 
+#ifdef _LINUX_
+	gettimeofday(&end1, NULL);
+
+	long long mtime1, seconds1, useconds1;
+	seconds1 = end1.tv_sec - start.tv_sec;
+	useconds1 = end1.tv_usec - start.tv_usec;
+	mtime1 = seconds1*1000000 + useconds1;
+#endif
+
 	
 	// Step-6: Compute MCC for each cluster and return qualified subgraph.
 	vector<vector<int> > cluster_set(n);		// cluster_set[i] is the i-th cluster
@@ -319,8 +333,10 @@ void Graph::gsgd(const char *eps_s, int miu, int dist) {
 		cluster_set[noncore_cluster[i].first].pb(noncore_cluster[i].second);
 	}
 
+	int CID = 0;
 	for(int c = 0; c < n; c++) {
 		bool valid = true;
+		if(cluster_set[c].size() > 0) ++CID;
 		if(cluster_set[c].size() > 2) {			// only non-core nodes can lay on the boundary of the MCC
 			for(int i = 2; i < cluster_set[c].size(); i++) {	// v1
 				ui v1 = cluster_set[c][i];
@@ -338,13 +354,30 @@ void Graph::gsgd(const char *eps_s, int miu, int dist) {
 				}
 				if(!valid) break;
 			}
+			// if(valid) ++CID;
 		}
 	}
+	printf("CID = %d\n", CID);
+
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("Clustering time: %lld, MMC time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
+#endif
 	
 }
 
 
 void Graph::dgcd(const char *eps_s, int miu, int dist) {
+
+	if(cid == NULL) cid = new int[n];		// assign each node a cluster ID 
+	for(ui u = 0; u < n; u++) cid[u] = n;	// initialize cluster ID
+
 	// Step-1: Compute eps value (including eps_a2 and eps_b2).
 	int eps_a2 = 0, eps_b2 = 0;
 	get_eps(eps_s, eps_a2, eps_b2);
@@ -366,85 +399,99 @@ void Graph::dgcd(const char *eps_s, int miu, int dist) {
 			// Step 4-1: Compute epsilon-neighbor of v.
 			vector<ui> S;		// v's epsilon-neighbor list
 			eps_neighbor(v, eps_a2, eps_b2, dist, H, S);
-			printf("v has %d epsilon-neighbor\n", S.size());
 
-			if(S.size() >= miu) {
-				cid[v] = CID;	// assign CID to v 
-				processed[v] = true;
-				// Step 4-2: Iterate v's epsilon-neighbor.
-				for(int i = 0; i < S.size(); i++) {
-					ui u = S[i];
-					cid[u] = CID;	// assign CID to v's neighbor -- u 
-					if(!processed[u]) Q.push(u);
-				}
+			// Step 4-2: Decide v is a core node or not.
+			if(S.size() < miu) continue ;	// v is not a core mode.		
+			
+			// Ohterwise, v is a core node.
+			cid[v] = CID;					// assign CID to v 
+			processed[v] = true;
+			
+			// Step 4-3: Collect v's epsilon-neighbor.
+			for(int i = 0; i < S.size(); i++) {
+				ui u = S[i];
+				cid[u] = CID;				
+				if(!processed[u]) Q.push(u);
 			}
-			printf("Q.size() = %d\n", Q.size());
 
-			// Step 4-3: Scan each vertex in Q.
+			// Step 4-4: Scan each vertex in Q.
 			while(!Q.empty()) {
 				ui k = Q.front();
 				Q.pop();
 
 				if(!processed[k]) {
 					S.clear();
-					eps_neighbor(k, eps_a2, eps_b2, dist, H, S);// k's epsilon-neighbor list
-					printf("S.size() = %d \n", S.size());
-					if(S.size() >= miu) {						// k is a core node
-						for(int i = 0; i < S.size(); i++) {		// all k's epsilon-neighbor belong to same cluster
-							ui h = S[i];
-							cid[h] = CID;
-							if(!processed[h]) Q.push(h);
-						}
+
+					// Collect k's epsilon-neighbor list
+					eps_neighbor(k, eps_a2, eps_b2, dist, H, S);
+
+					if(S.size() < miu) continue ;  
+
+					processed[k] = true;	// k is a core node
+
+					// all k's epsilon-neighbor belong to same cluster
+					for(int i = 0; i < S.size(); i++) {		
+						ui h = S[i];
+						cid[h] = CID;
+						if(!processed[h]) Q.push(h);
 					}
 				}
-			}			
+
+			}
+
+			// Step 4-5: Update cluster ID.			
 			++CID;
 		}
 	}
+	printf("CID = %d\n", CID);
 }
 
 
 void Graph::eps_neighbor(ui v, int eps_a2, int eps_b2, int dist, vector<pair<ui, ui> > &H, vector<ui> &S) {
-	// Iterate each neighbors of v and add it into N_gs(v).
-	vector<ui> N_gs1; 
-	N_gs1.pb(v); 
+
+	S.clear();		// S stores the epsilon-neighborhood of user -- v 
+
+	// Iterate each neighbor of v and add it into N_gs(v).
+	vector<ui> N_gs_v; 
+	N_gs_v.pb(v); 
 	for(ui i = pstart[v]; i < pstart[v+1]; i++) {
 		ui u = edges[i];
 		if(euclidean_dist2(v,u) <= dist*dist) {	// euclidean distance <= gamma
-			N_gs1.pb(u);
+			N_gs_v.pb(u);
 		}
 	}
 
 	// Iterate each N_gs(v) and decide which one is in Hash Table.
-	for(int i = 0; i < N_gs1.size(); i++) {
-		ui v_i = v, v_j = N_gs1[i];				// v_j is v_i's geo-social neighbor
+	for(int i = 0; i < N_gs_v.size(); i++) {
+		ui v_i = v, v_j = N_gs_v[i];			// v_j is v_i's geo-social neighbor
 
 		// (v_i,v_j) or (v_j,v_i) exists
 		if(find(H.begin(), H.end(), mp(v_i, v_j)) != H.end() || find(H.begin(), H.end(), mp(v_j, v_i)) != H.end()) {
 			S.pb(v_j);
-		} else {
+		} 
+		else { 
 			// Compute N_gs(v_j).
-			vector<ui> N_gs2; 
-			N_gs2.pb(v_j); 
+			vector<ui> N_gs_j; 
+			N_gs_j.pb(v_j); 
 
 			for(ui j = pstart[v_j]; j < pstart[v_j+1]; j++) {
 				ui u = edges[j];
 				if(euclidean_dist2(v_j,u) <= dist*dist) {
-					N_gs2.pb(u);
+					N_gs_j.pb(u);
 				}
 			}
 
 			// Compute delta(v_i,v_j).
 			vector<int> intersect;
-			sort(N_gs1.begin(),N_gs1.end());   
-			sort(N_gs2.begin(),N_gs2.end());   
-			set_intersection(N_gs1.begin(),N_gs1.end(),N_gs2.begin(),N_gs2.end(),back_inserter(intersect));
+			sort(N_gs_v.begin(),N_gs_v.end());   
+			sort(N_gs_j.begin(),N_gs_j.end());   
+			set_intersection(N_gs_v.begin(),N_gs_v.end(),N_gs_j.begin(),N_gs_j.end(),back_inserter(intersect));
 			int cn = (int)intersect.size();
 
 			// structural similarity(v_i,v_j) >= epsilon
-			if(((long long)cn)*((long long)cn)*eps_b2 >= ((long long)N_gs1.size())*((long long)N_gs2.size())*eps_a2) {
+			if(((long long)cn)*((long long)cn)*eps_b2 >= ((long long)N_gs_v.size())*((long long)N_gs_j.size())*eps_a2) {
 				S.pb(v_j); 
-				H.pb(mp(v_i,v_j)); 
+				H.pb(mp(v_i,v_j)); // a pair of users -- (v_i,v_j), belong to each other's epsilon-neighborhood 
 				H.pb(mp(v_j,v_i)); 
 			}
 		}
