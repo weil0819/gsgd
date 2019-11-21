@@ -8,6 +8,10 @@
 #include "Utility.h"
 #include "Graph.h"
 
+bool myComp(const vector<int> &A, const vector<int> &B) {
+	return A.size() > B.size();
+}
+
 Graph::Graph(const char *_dir) {
 	dir = string(_dir);
 
@@ -169,6 +173,37 @@ void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) {
 }
 
 
+void Graph::cluster_noncore_vertices(int eps_a2, int eps_b2, int miu, unordered_set<int> &US) {
+	if(cid == NULL) cid = new int[n];		// assign each node a cluster ID
+	for(ui u = 0; u < n; u++) cid[u] = n;	// initialize cluster ID
+
+	for(auto u: US) {
+		if(similar_degree[u] >= miu) {		// u is a core node
+			int x = find_root(u);
+			if(u < cid[x]) cid[x] = u;		// update cluster ID, which should be minimal ID in cluster
+		}
+	}
+
+	noncore_cluster.clear();
+	noncore_cluster.reserve(n);
+
+	for(auto i: US) {
+		if(similar_degree[i] >= miu) {		// i should be core node
+			for(ui j = pstart[i];j < pstart[i+1];j ++) {
+				// when edges[j] is also a core node or i and edges[j] are in same cluster
+				if(US.find(edges[j]) == US.end() || similar_degree[edges[j]] >= miu||pa[i] == pa[edges[j]]) continue;
+
+				if(min_cn[j] >= 0) {
+					min_cn[j] = naive_similar_check(i, edges[j], eps_a2, eps_b2, US);
+				}
+
+				if(min_cn[j] == -1) noncore_cluster.pb(mp(cid[pa[i]], edges[j]));
+			}
+		}
+	}
+}
+
+
 void Graph::output(const char *eps_s, const char *miu, const char *dist) {
 	printf("\t*** Start write result into disk!\n");
 
@@ -226,7 +261,7 @@ void Graph::cluster_count(const char *eps_s, const char *miu, const char *dist) 
 	// Iterate each cluster and write them into disk.
 	for(int i = 0; i < n; i++) {
 		if(cluster_set[i].size() > 0) {
-			fprintf(fout, "cluster-%d, \t #cluster=%d \n", i, cluster_set[i].size());
+			fprintf(fout, "cluster-%d, \t #cluster=%d \n", i, (int)cluster_set[i].size());
 			for(int j = 0; j < cluster_set[i].size(); j++) {
 				fprintf(fout, "%d\t", cluster_set[i][j]);
 			}
@@ -240,10 +275,7 @@ void Graph::cluster_count(const char *eps_s, const char *miu, const char *dist) 
 
 
 void Graph::gsgd(const char *eps_s, int miu, int dist) {
-#ifdef _LINUX_
-	struct timeval start, end1, end;
-	gettimeofday(&start, NULL);
-#endif
+
 	// Pruning-1: prune all neighbors whose distance is larger than dist.
 	// Pruning-2: Find edge (u,v) in N[v] using binary search, and build cross link between (u,v) and (v,u).
 	prune_and_cross_link(dist);
@@ -253,6 +285,11 @@ void Graph::gsgd(const char *eps_s, int miu, int dist) {
 	get_eps(eps_s, eps_a2, eps_b2);
 	eps_a2 *= eps_a2;
 	eps_b2 *= eps_b2;
+
+#ifdef _LINUX_
+	struct timeval start, end1, end;
+	gettimeofday(&start, NULL);
+#endif
 
 	// Step-2: Compute each node's similar_degree value.
 	if(similar_degree == NULL) similar_degree = new int[n];
@@ -354,10 +391,8 @@ void Graph::gsgd(const char *eps_s, int miu, int dist) {
 				}
 				if(!valid) break;
 			}
-			// if(valid) ++CID;
 		}
 	}
-	printf("CID = %d\n", CID);
 
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
@@ -443,7 +478,711 @@ void Graph::dgcd(const char *eps_s, int miu, int dist) {
 			++CID;
 		}
 	}
-	printf("CID = %d\n", CID);
+	// printf("CID = %d\n", CID);
+}
+
+
+void Graph::exact(const char *eps_s, int mu, int gamma) {
+
+	int eps_a2 = 0, eps_b2 = 0;
+	get_eps(eps_s, eps_a2, eps_b2);
+	eps_a2 *= eps_a2;
+	eps_b2 *= eps_b2;
+
+#ifdef _LINUX_
+	struct timeval start, end1, end;
+	gettimeofday(&start, NULL);
+#endif
+
+	// Cluster-Tric
+	ui *deg = new ui[n];
+	for(ui i = 0;i < n;i ++) deg[i] = pstart[i+1]-pstart[i];
+
+	ui *adj = new ui[n];
+	memset(adj, 0, sizeof(ui)*n);
+
+	ui *similar = new ui[m];
+	memset(similar, 0, sizeof(ui)*m);
+
+	ui *pend = new ui[n];		
+
+	for(ui i = 0;i < n;i ++) { 
+
+		ui &end = pend[i] = pstart[i]; 
+
+		ui j = pstart[i+1]; 
+
+		while(true) {
+
+			while(end < j&&(deg[edges[end]] < deg[i]||(deg[edges[end]]==deg[i]&&edges[end]<i))) ++ end;
+
+			while(j > end&&(deg[edges[j-1]] > deg[i]||(deg[edges[j-1]]==deg[i]&&edges[j-1]>i))) -- j;
+
+			if(end >= j) break;
+
+			swap(edges[end], edges[j-1]);
+		}
+		sort(edges+pend[i], edges+pstart[i+1]);
+	}
+	
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = j+1;
+
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			for(ui k = pstart[v];k < pend[v];k ++) if(adj[edges[k]]) {
+				++ similar[j];		// edges[j]
+				++ similar[k];		// edges[k]
+				++ similar[adj[edges[k]] - 1];
+			}
+		}
+
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = 0;
+	}
+
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			similar[j] += 2;
+
+			if(((long long)similar[j])*((long long)similar[j])*eps_b2 >= ((long long)(deg[u]+1))*((long long)(deg[v]+1))*eps_a2) similar[j] = 1;
+			else similar[j] = 0;
+
+			ui r_id = binary_search(edges+pend[v], pstart[v+1]-pend[v], u) + pend[v];
+			similar[r_id] = similar[j];
+		}
+	}
+
+	delete[] pend; pend = NULL;
+	delete[] deg; deg = NULL;
+	delete[] adj; adj = NULL;
+
+	if(similar_degree == NULL) similar_degree = new int[n];
+	memset(similar_degree, 0, sizeof(int)*n);
+
+	for(ui i = 0;i < n;i ++) for(ui j = pstart[i];j < pstart[i+1];j ++) {
+		if(similar[j] == 1) ++ similar_degree[i];
+	}
+
+	if(pa == NULL) pa = new int[n];
+	if(rank == NULL) rank = new int[n];
+	for(ui i = 0;i < n;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+
+	for(ui i = 0;i < n;i ++) {
+		if(similar_degree[i] < mu) continue;
+
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] < mu) continue;		
+
+			if(similar[j] == 1) my_union(pa, rank, i, edges[j]);
+		}
+	}
+
+	if(cid == NULL) cid = new int[n];
+	for(ui i = 0;i < n;i ++) cid[i] = n;
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		int x = find_root(pa, i);
+		if(i < cid[x]) cid[x] = i;
+	}
+
+	vector<pair<int,int> > noncore_cluster;
+	noncore_cluster.reserve(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] >= mu) continue;
+
+			if(similar[j] == 1) noncore_cluster.pb(mp(cid[pa[i]], edges[j]));
+		}
+	}
+
+	delete[] similar; similar = NULL;
+
+#ifdef _LINUX_
+	gettimeofday(&end1, NULL);
+
+	long long mtime1, seconds1, useconds1;
+	seconds1 = end1.tv_sec - start.tv_sec;
+	useconds1 = end1.tv_usec - start.tv_usec;
+	mtime1 = seconds1*1000000 + useconds1;
+#endif
+
+	// Collect a set of clusters
+	vector<vector<int> > clusters(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		clusters[cid[find_root(pa, i)]].pb(i);
+	}
+
+	sort(noncore_cluster.begin(), noncore_cluster.end());
+	noncore_cluster.erase(unique(noncore_cluster.begin(), noncore_cluster.end()), noncore_cluster.end());
+	for(ui i = 0;i < noncore_cluster.size();i ++) {
+		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
+	}
+
+	// Iterate each cluster
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < 3) continue ;
+		printf("============================ORIGINAL CLUSTER: %d has %d nodes==============================\n", c, (int)clusters[c].size());
+		vector<vector<int> > final_clusters;
+		vector<int> preList;
+		for(int i = 2; i < clusters[c].size(); i++) {
+			ui v_i = clusters[c][i];				// Vi
+			for(int j = 0; j < i; j++) {
+				ui v_j = clusters[c][j];			// Vj
+				for(ui k = j+1; k < i; k++) {
+					ui v_k = clusters[c][k];		// Vk
+					double centerX = 0.0, centerY = 0.0;
+					double r2 = mcc_radius2(v_i, v_j, v_k, centerX, centerY);	// r^2					
+
+					if(r2 < (double)gamma*gamma) {
+						vector<int> curList;		// a set of vertices in circle
+						for(ui ii = 0; ii < clusters[c].size(); ii++) {
+							double dist2 = euclidean_dist2(ploc[2*clusters[c][ii]], ploc[2*clusters[c][ii]+1], centerX, centerY);
+							if(dist2 <= r2) curList.pb(clusters[c][ii]);
+						}
+						
+						// Compute cluster based on "curList"
+						if(curList.size() < mu) continue; 
+
+						int isSub = 1;
+						if(preList.empty()) preList = curList;
+						if(!is_subset(curList, preList) && !is_subset(preList, curList)) isSub = 0; 
+
+						if((isSub && curList.size() > preList.size()) || !isSub) {
+							preList = curList;
+
+							vector<vector<int> > cur_clusters;
+							renew_cluster(eps_a2, eps_b2, mu, curList, cur_clusters);
+
+							final_clusters.insert(final_clusters.end(), cur_clusters.begin(), cur_clusters.end());	
+						} 
+					}else printf("radius = %.2f \n", sqrt(r2));
+				}
+			}
+		}
+		// Printing ... 		
+		if(!final_clusters.empty()) { 			
+			sort(final_clusters.begin(), final_clusters.end(), myComp);
+			for(int i = 0; i < final_clusters.size(); i++) {
+				int j = i-1;
+				while(j >= 0 && !is_subset(final_clusters[j], final_clusters[i])) --j;
+				if(j != -1) continue ;
+
+				printf("cluster-%d \t #cluster=%d \n", i, (int)final_clusters[i].size());
+				for(auto u: final_clusters[i]) printf("%d\t", u);
+					printf("\n************************************************************************\n");
+			}			
+		}
+		if(c == 594) exit(1);	
+	}
+
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("Clustering time: %lld, MMC time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
+#endif	
+}
+
+
+void Graph::appro(const char *eps_s, int mu, int gamma) {
+	int eps_a2 = 0, eps_b2 = 0;
+	get_eps(eps_s, eps_a2, eps_b2);
+	eps_a2 *= eps_a2;
+	eps_b2 *= eps_b2;
+
+#ifdef _LINUX_
+	struct timeval start, end1, end;
+	gettimeofday(&start, NULL);
+#endif
+
+	// Cluster-Tric
+	ui *deg = new ui[n];
+	for(ui i = 0;i < n;i ++) deg[i] = pstart[i+1]-pstart[i];
+
+	ui *adj = new ui[n];
+	memset(adj, 0, sizeof(ui)*n);
+
+	ui *similar = new ui[m];
+	memset(similar, 0, sizeof(ui)*m);
+
+	ui *pend = new ui[n];		
+
+	for(ui i = 0;i < n;i ++) { 
+
+		ui &end = pend[i] = pstart[i]; 
+
+		ui j = pstart[i+1]; 
+
+		while(true) {
+
+			while(end < j&&(deg[edges[end]] < deg[i]||(deg[edges[end]]==deg[i]&&edges[end]<i))) ++ end;
+
+			while(j > end&&(deg[edges[j-1]] > deg[i]||(deg[edges[j-1]]==deg[i]&&edges[j-1]>i))) -- j;
+
+			if(end >= j) break;
+
+			swap(edges[end], edges[j-1]);
+		}
+		sort(edges+pend[i], edges+pstart[i+1]);
+	}
+	
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = j+1;
+
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			for(ui k = pstart[v];k < pend[v];k ++) if(adj[edges[k]]) {
+				++ similar[j];		// edges[j]
+				++ similar[k];		// edges[k]
+				++ similar[adj[edges[k]] - 1];
+			}
+		}
+
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = 0;
+	}
+
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			similar[j] += 2;
+
+			if(((long long)similar[j])*((long long)similar[j])*eps_b2 >= ((long long)(deg[u]+1))*((long long)(deg[v]+1))*eps_a2) similar[j] = 1;
+			else similar[j] = 0;
+
+			ui r_id = binary_search(edges+pend[v], pstart[v+1]-pend[v], u) + pend[v];
+			similar[r_id] = similar[j];
+		}
+	}
+
+	delete[] pend; pend = NULL;
+	delete[] deg; deg = NULL;
+	delete[] adj; adj = NULL;
+
+	if(similar_degree == NULL) similar_degree = new int[n];
+	memset(similar_degree, 0, sizeof(int)*n);
+
+	for(ui i = 0;i < n;i ++) for(ui j = pstart[i];j < pstart[i+1];j ++) {
+		if(similar[j] == 1) ++ similar_degree[i];
+	}
+
+	if(pa == NULL) pa = new int[n];
+	if(rank == NULL) rank = new int[n];
+	for(ui i = 0;i < n;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+
+	for(ui i = 0;i < n;i ++) {
+		if(similar_degree[i] < mu) continue;
+
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] < mu) continue;		
+
+			if(similar[j] == 1) my_union(pa, rank, i, edges[j]);
+		}
+	}
+
+	if(cid == NULL) cid = new int[n];
+	for(ui i = 0;i < n;i ++) cid[i] = n;
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		int x = find_root(pa, i);
+		if(i < cid[x]) cid[x] = i;
+	}
+
+	vector<pair<int,int> > noncore_cluster;
+	noncore_cluster.reserve(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] >= mu) continue;
+
+			if(similar[j] == 1) noncore_cluster.pb(mp(cid[pa[i]], edges[j]));
+		}
+	}
+
+	delete[] similar; similar = NULL;
+
+#ifdef _LINUX_
+	gettimeofday(&end1, NULL);
+
+	long long mtime1, seconds1, useconds1;
+	seconds1 = end1.tv_sec - start.tv_sec;
+	useconds1 = end1.tv_usec - start.tv_usec;
+	mtime1 = seconds1*1000000 + useconds1;
+#endif
+
+	// Collect a set of clusters
+	vector<vector<int> > clusters(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		clusters[cid[find_root(pa, i)]].pb(i);
+	}
+
+	sort(noncore_cluster.begin(), noncore_cluster.end());
+	noncore_cluster.erase(unique(noncore_cluster.begin(), noncore_cluster.end()), noncore_cluster.end());
+	for(ui i = 0;i < noncore_cluster.size();i ++) {
+		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
+	}
+
+	// Iterate each cluster
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < 3) continue ;
+
+		printf("======================ORIGINAL CLUSTER: %d has %d nodes========================\n", c, (int)clusters[c].size());
+		for(int i = 0; i < clusters[c].size(); i++) {
+			printf("%d\t", clusters[c][i]);
+		}
+		printf("\n");
+
+		// Is there a way to compute MCC for such a cluster?
+		// then decide radius/diameter 
+		// https://www.nayuki.io/page/smallest-enclosing-circle
+		// https://www.codeproject.com/Articles/1165267/Coding-Challenge-Smallest-Circle-Problem 
+		// https://blog.csdn.net/niiick/article/details/89153096 
+		// https://blog.csdn.net/wu_tongtong/article/details/79362339 (*)
+		
+
+
+
+		// utilize Floyd-Warshall algorithm to calculate shortest-path between any two nodes in clusters[c].
+		// calculate e(v) and d(G), nodes with e(v) > gamma can be considered as candidate to drop
+		// vector<int> output;
+		// reduce_cluster(eps_a2, eps_b2, mu, gamma, clusters[c], output);		
+
+		vector<vector<int> > output;
+		renew_cluster(eps_a2, eps_b2, mu, clusters[c], output);
+		if(output.empty()) continue ;
+		for(int i = 0; i < output.size(); i++) {
+			printf("new cluster has %d nodes \n", (int)output[i].size());
+			for(int j = 0; j < output[i].size(); j++) {
+				printf("%d\t", output[i][j]);
+			}
+			printf("\n");
+		}
+		
+	}
+
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("Clustering time: %lld, MMC time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
+#endif
+}
+
+
+/*
+// long-time cost renew implementation (keep it as backup)
+void Graph::renew_cluster(int eps_a2, int eps_b2, int mu, vector<int> &curList) {
+	unordered_set<int> US(curList.begin(), curList.end());
+	
+	if(degree == NULL) degree = new int[n];
+	memset(degree, 0, sizeof(int)*n);
+
+	for(auto i: curList) {
+		for(ui j = pstart[i]; j < pstart[i+1]; j++) {
+			if(US.find(edges[j]) != US.end()) ++degree[i];
+		}
+	}
+
+	if(similar_degree == NULL) similar_degree = new int[n];
+	memset(similar_degree, 0, sizeof(int)*n);
+
+	if(min_cn == NULL) min_cn = new int[m];
+	memset(min_cn, 0, sizeof(int)*m);
+
+	int flag = 0;
+	for(auto i: curList) {
+		if(degree[i] < mu) {			
+			similar_degree[i] = -1;		 
+			continue ;
+		}
+		flag = 1;
+		for(ui j = pstart[i]; j < pstart[i+1]; j++) {
+			if(min_cn[j] < 0 || US.find(edges[j]) == US.end()) continue;
+			min_cn[j] = naive_similar_check(i, edges[j], eps_a2, eps_b2, US);
+			if(min_cn[j] == -1) ++similar_degree[i];
+		}
+	}
+	if(!flag) return ;
+
+	if(pa == NULL) pa = new int[n];
+	if(rank == NULL) rank = new int[n];
+	for(ui i = 0;i < n;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+	flag = 0;
+	for(auto i: curList) {								
+		if(similar_degree[i] < mu) continue;	
+		flag = 1;			
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {		
+			if(US.find(edges[j]) == US.end() || similar_degree[edges[j]] < mu) continue;	
+			if(min_cn[j] == -1) my_union(i, edges[j]);		
+		}
+	}
+	if(!flag) return ;
+
+	cluster_noncore_vertices(eps_a2, eps_b2, mu, US);
+
+}
+*/
+
+void Graph::renew_cluster(int eps_a2, int eps_b2, int mu, vector<int> &curList, vector<vector<int> > &cluster) {
+	// Redefine "n,m,pstart,edges"
+	unordered_map<int, int> UM;	
+	unordered_map<int, int> UM_R;	
+
+	ui nn = curList.size();
+	ui mm = 0;
+	for(ui i = 0; i < nn; i++) {
+		UM[curList[i]] = i;
+		UM_R[i] = curList[i];
+	}
+
+	ui *deg = new ui[nn];
+	memset(deg, 0, sizeof(ui)*nn);
+
+	for(ui i = 0; i < nn; i++) {
+		ui u = curList[i];
+		for(ui j = pstart[u]; j < pstart[u+1]; j++) {
+			if(UM.find(edges[j]) != UM.end()) ++deg[i];
+		}
+		mm += deg[i];
+	}
+
+	ui *ps = new ui[nn+1];
+	int *ed = new int[mm];
+
+	ui x = 0;
+	ps[0] = 0;
+	for(ui i = 0; i < nn; i++) {
+		if(deg[i] > 0) {
+			ui u = curList[i];
+			for(ui j = pstart[u]; j < pstart[u+1]; j++) {
+				if(UM.find(edges[j]) != UM.end()) ed[x++] = UM[edges[j]];	
+			}
+		}
+		ps[i+1] = ps[i] + deg[i];
+	}
+
+	// Cluster-Tric
+	ui *adj = new ui[nn];
+	memset(adj, 0, sizeof(ui)*nn);
+
+	ui *similar = new ui[mm];
+	memset(similar, 0, sizeof(ui)*mm);
+
+	ui *pend = new ui[nn];
+
+	for(ui i = 0; i < nn; i++) {
+		ui &end = pend[i] = ps[i];
+		ui j = ps[i+1];
+
+		while(true) {
+			while(end < j&&(deg[ed[end]] < deg[i]||(deg[ed[end]]==deg[i]&&ed[end]<i))) ++ end;
+
+			while(j > end&&(deg[ed[j-1]] > deg[i]||(deg[ed[j-1]]==deg[i]&&ed[j-1]>i))) -- j; 
+
+			if(end >= j) break;
+
+			swap(ed[end], ed[j-1]);
+		}
+		sort(ed+pend[i], ed+ps[i+1]);
+	}
+
+	for(ui u = 0;u < nn;u ++) {
+		for(ui j = ps[u];j < pend[u];j ++) adj[ed[j]] = j+1;
+
+		for(ui j = ps[u];j < pend[u];j ++) {
+			ui v = ed[j];
+
+			for(ui k = ps[v];k < pend[v];k ++) if(adj[ed[k]]) {
+				++ similar[j];		// ed[j]
+				++ similar[k];		// ed[k]
+				++ similar[adj[ed[k]] - 1];
+			}
+		}
+
+		for(ui j = ps[u];j < pend[u];j ++) adj[ed[j]] = 0;
+	}
+
+	for(ui u = 0; u < nn; u ++) {
+		for(ui j = ps[u];j < pend[u];j ++) {
+			ui v = ed[j];
+
+			similar[j] += 2;
+
+			if(((long long)similar[j])*((long long)similar[j])*eps_b2 >= ((long long)(deg[u]+1))*((long long)(deg[v]+1))*eps_a2) similar[j] = 1;
+			else similar[j] = 0;
+
+			ui r_id = binary_search(ed+pend[v], ps[v+1]-pend[v], u) + pend[v];
+			similar[r_id] = similar[j];
+		}
+	}
+
+	delete[] pend; pend = NULL;
+	delete[] adj; adj = NULL;
+	delete[] deg; deg = NULL;
+
+	int *similar_degree = new int[nn];
+	memset(similar_degree, 0, sizeof(int)*nn);
+
+	for(ui i = 0;i < nn;i ++) for(ui j = ps[i];j < ps[i+1];j ++) {
+		if(similar[j] == 1) ++ similar_degree[i];
+	}
+
+	int *pa = new int[nn];
+	int *rank = new int[nn];
+	for(ui i = 0;i < nn;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+
+	int flag = 0;
+	for(ui i = 0;i < nn;i ++) {
+		if(similar_degree[i] < mu) continue;
+		flag = 1;
+		for(ui j = ps[i];j < ps[i+1];j ++) {
+			if(similar_degree[ed[j]] < mu) continue;		
+			if(similar[j] == 1) my_union(pa, rank, i, ed[j]);
+		}
+	}
+
+	// Special Case -- no core nodes/clusters.
+	if(!flag) {
+		delete[] ps; ps = NULL;
+		delete[] ed; ed = NULL;
+		delete[] pa; pa = NULL;
+		delete[] rank; rank = NULL;
+		delete[] similar; similar = NULL;
+		delete[] similar_degree; similar_degree = NULL;
+
+		return ;
+	}
+
+	// General Case -- core nodes existing.
+	int *cid = new int[nn];
+	for(ui i = 0;i < nn;i ++) cid[i] = nn;
+
+	for(ui i = 0;i < nn;i ++) if(similar_degree[i] >= mu) {
+		int x = find_root(pa, i);
+		if(i < cid[x]) cid[x] = i;
+	}
+
+	vector<pair<int,int> > noncore_cluster;
+	noncore_cluster.reserve(nn);
+
+	for(ui i = 0;i < nn;i ++) if(similar_degree[i] >= mu) {
+		for(ui j = ps[i];j < ps[i+1];j ++) {
+			if(similar_degree[ed[j]] >= mu) continue;
+			if(similar[j] == 1) noncore_cluster.pb(mp(cid[pa[i]], ed[j]));
+		}
+	}
+
+	// Printing ...	maybe more than one clusters in each triangle.
+	vector<vector<int> > cluster_set(nn);
+
+	for(ui u = 0; u < nn; u++) {
+		if(similar_degree[u] >= mu) {
+			int cluster_id = cid[pa[u]];
+			cluster_set[cluster_id].pb(u);
+		}
+	}
+
+	// Special Case -- no non-core nodes.
+	if(!noncore_cluster.empty()) {
+		sort(noncore_cluster.begin(), noncore_cluster.end());
+		noncore_cluster.erase(unique(noncore_cluster.begin(), noncore_cluster.end()), noncore_cluster.end()); 
+
+		for(ui i = 0;i < noncore_cluster.size();i ++) {
+			cluster_set[noncore_cluster[i].first].pb(noncore_cluster[i].second);		
+		}
+	}
+
+	for(ui i = 0; i < nn; i++) {
+		if(cluster_set[i].size() > 0) {
+			vector<int> new_cluster;		
+
+			for(auto u: cluster_set[i]) {
+				new_cluster.pb(UM_R[u]);				
+			}
+			sort(new_cluster.begin(), new_cluster.end());
+			cluster.pb(new_cluster);
+		}
+	}
+
+	delete[] ps; ps = NULL;
+	delete[] ed; ed = NULL;
+	delete[] cid; cid = NULL;
+	delete[] pa; pa = NULL;
+	delete[] rank; rank = NULL;
+	delete[] similar; similar = NULL;
+	delete[] similar_degree; similar_degree = NULL;
+
+}
+
+
+void Graph::reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) {
+	unordered_map<int, int> node_map;
+	unordered_map<int, int> node_map_re;
+	int N = cluster.size();
+	for(int i = 0; i < N; i++) {
+		node_map[i] = cluster[i];
+		node_map_re[cluster[i]] = i;
+	}
+
+	vector<vector<double> > dist(N, vector<double>(N,INF));
+
+	// Compute the weight for each edge
+	for(ui i = 0; i < N; i++) {
+		ui u = cluster[i];
+		dist[i][i] = 0.0;
+		for(ui j = pstart[u]; j < pstart[u+1]; j++) {
+			ui v = edges[j];
+			if(node_map_re.find(v) != node_map_re.end()) {
+				int k = node_map_re[v];
+				dist[i][k] = sqrt(euclidean_dist2(u,v));
+				dist[k][i] = dist[i][k];
+				printf("dist[%d][%d] = %.2f \n", i,k, dist[i][k]);
+			}
+		}
+	}
+
+	vector<double> ecc(N, 0.0);
+	for(int k = 0; k < N; k++) {
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < N; j++) {
+				if (dist[i][k] + dist[k][j] < dist[i][j]) dist[i][j] = dist[i][k] + dist[k][j];                    
+			}			
+		}
+	}
+
+	// ecc > 2gamma, ==> candidate nodes
+	int cnt = 0;
+	for(int i = 0; i < N; i++) {
+		ecc[i] = *max_element(dist[i].begin(), dist[i].end());
+	}
+	sort(ecc.begin(), ecc.end());
 }
 
 
@@ -505,6 +1244,41 @@ int Graph::naive_similar_check(int u, int v, int eps_a2, int eps_b2) {
 	ui i = pstart[u], j = pstart[v];
 	int cn = 2;	// number of common neighbor between u and v
 	while(i < pstart[u+1]&&j < pstart[v+1]) { 
+		if(edges[i] == u) {
+			++ i;
+			continue ;
+		}
+		if(edges[j] == v) {
+			++ j;
+			continue ;
+		}
+
+		if(edges[i] < edges[j]) ++ i;
+		else if(edges[i] > edges[j]) ++ j;
+		else {
+			++ cn;
+			++ i;
+			++ j;
+		}
+	}
+
+	// structural similarity(u,v) >= epsilon => cn^2 >= eps^2*(du*dv)
+	if(((long long)cn)*((long long)cn)*eps_b2 >= ((long long)du)*((long long)dv)*eps_a2) return -1;
+
+	return -2;
+}
+
+
+int Graph::naive_similar_check(int u, int v, int eps_a2, int eps_b2,  unordered_set<int> &US) {
+	int du = degree[u], dv = degree[v];		
+
+	ui i = pstart[u], j = pstart[v];
+	int cn = 2;	
+	while(i < pstart[u+1]&&j < pstart[v+1]) { 
+
+		if(US.find(edges[i]) == US.end()) ++i;
+		if(US.find(edges[j]) == US.end()) ++j;
+
 		if(edges[i] == u) {
 			++ i;
 			continue ;
@@ -593,7 +1367,70 @@ double Graph::mcc_radius2(int v1, int v2, int v3) {
 }
 
 
+double Graph::mcc_radius2(int v1, int v2, int v3, double &centerX, double &centerY) {
+		double radius2 = 0.0;
+
+	// Step-1: compute pairwise distance. 
+	vector<double> dist2; 
+	dist2.reserve(3); 
+	dist2[0] = euclidean_dist2(v1, v2); 
+	dist2[1] = euclidean_dist2(v1, v3);  
+	dist2[2] = euclidean_dist2(v2, v3); 
+
+	// Step-2: judge the triangle (obtuse or right or acute) and find the center of the MCC.
+	int indMax = 0;
+	for(int i = 1; i < dist2.size(); i++) {
+		if(dist2[i] > dist2[indMax]) indMax = i;
+	}
+	double part1 = dist2[indMax];	// longest_edges^2
+	double part2 = 0.0;				// other_edges^2
+	for(int i = 0; i < dist2.size(); i++) {
+		if(i != indMax) part2 += dist2[i];
+	}
+
+	if(part1 >= part2) {			// obtuse or right triangle
+		if(indMax == 0) {
+			centerX = (ploc[2*v1] - ploc[2*v2]) / 2;
+			centerY = (ploc[2*v1+1] - ploc[2*v2+1]) / 2;
+			radius2 = euclidean_dist2(ploc[2*v1], ploc[2*v1+1], centerX, centerY);
+		}else if(indMax == 1) {
+			centerX = (ploc[2*v2] - ploc[2*v3]) / 2;
+			centerY = (ploc[2*v2+1] - ploc[2*v3+1]) / 2;
+			radius2 = euclidean_dist2(ploc[2*v2], ploc[2*v2+1], centerX, centerY);
+		}else {
+			centerX = (ploc[2*v3] - ploc[2*v1]) / 2;
+			centerY = (ploc[2*v3+1] - ploc[2*v1+1]) / 2;
+			radius2 = euclidean_dist2(ploc[2*v3], ploc[2*v3+1], centerX, centerY);
+		}
+	}else {							// acute triangle
+		float a1 = ploc[2*v2] - ploc[2*v1], b1 = ploc[2*v2+1] - ploc[2*v1+1];
+		float a2 = ploc[2*v3] - ploc[2*v1], b2 = ploc[2*v3+1] - ploc[2*v1+1];
+		double c1 = (a1 * a1 + b1 * b1) / 2, c2 = (a2 * a2 + b2 * b2) / 2;
+		double d = a1 * b2 - a2 * b1;
+		centerX = ploc[2*v1] + (c1 * b2 - c2 * b1) / d;
+		centerY = ploc[2*v1+1] + (a1 * c2 - a2 * c1) / d;
+		radius2 = euclidean_dist2(ploc[2*v1], ploc[2*v1+1], centerX, centerY);
+	}
+
+	return radius2;
+}
+
+
 int Graph::find_root(int u) {
+	int x = u;
+	while(pa[x] != x) x = pa[x];
+
+	while(pa[u] != x) {
+		int tmp = pa[u];
+		pa[u] = x;
+		u = tmp;
+	}
+
+	return x;
+}
+
+
+int Graph::find_root(int *pa, int u) {
 	int x = u;
 	while(pa[x] != x) x = pa[x];
 
@@ -610,6 +1447,21 @@ int Graph::find_root(int u) {
 void Graph::my_union(int u, int v) {
 	int ru = find_root(u);
 	int rv = find_root(v);
+
+	if(ru == rv) return ;
+
+	if(rank[ru] < rank[rv]) pa[ru] = rv;
+	else if(rank[ru] > rank[rv]) pa[rv] = ru;
+	else {
+		pa[rv] = ru;
+		++ rank[ru];
+	}
+}
+
+
+void Graph::my_union(int *pa, int *rank, int u, int v) {
+	int ru = find_root(pa, u);
+	int rv = find_root(pa, v);
 
 	if(ru == rv) return ;
 
@@ -682,6 +1534,125 @@ ui Graph::binary_search(const int *array, ui b, ui e, int val) {
 	}
 
 	return e;
+}
+
+
+ui Graph::binary_search(const int *array, ui e, int val) {
+	ui b = 0;
+	-- e;
+	while(b < e) {
+		ui mid = b + (e-b)/2;
+		if(array[mid] >= val) e = mid;
+		else b = mid+1;
+	}
+	return e;
+}
+
+
+bool Graph::is_subset(vector<int> &A, vector<int> &B) {
+	sort(A.begin(), A.end());
+	sort(B.begin(), B.end());
+
+	return includes(A.begin(), A.end(), B.begin(), B.end());
+}
+
+Circle Graph::make_mcc(vector<int> &cluster) { 
+	// shuffle original cluster
+	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+	shuffle(cluster.begin(), cluster.end(), default_random_engine(seed));
+
+	// progressively add vertices to MCC or recompute MCC
+	Circle C;
+	for(ui i = 0; i < cluster.size(); i++) {
+		ui p = cluster[i];
+		if(C.radius < 0 || sqrt(euclidean_dist2(C.centerX, C.centerY, ploc[2*p], ploc[2*p+1])) > C.radius) {
+			C = make_circle_one_point(cluster, i+1, p);
+		}
+	}
+	return C;
+}
+
+// One boundary vertex known
+Circle Graph::make_circle_one_point(vector<int> &cluster, int end, ui p) {
+	Circle C{ploc[2*p], ploc[2*p+1], 0};
+
+	for(int i = 0; i < end; i++) {
+		ui q = cluster[i];
+		if(sqrt(euclidean_dist2(C.centerX, C.centerY, ploc[2*q], ploc[2*q+1])) > C.radius) {
+			if(C.radius == 0) C = make_diameter(p,q);				// circle with diameter = |p,q|
+			else C = make_circle_two_point(cluster, i+1, p, q);		// circle with triangle (p,q,?)
+		}
+	}
+	return C;
+}
+
+// Two boundary vertices known
+Circle Graph::make_circle_two_point(vector<int> &cluster, int end, ui p, ui q) {
+	Circle curC = make_diameter(p,q);
+	Circle left, right;
+
+	// For each vertex not in the two-point circle
+	double qpX = ploc[2*q] - ploc[2*p];
+	double qpY = ploc[2*q+1] - ploc[2*p+1];
+
+	for(int i = 0; i < end; i++) {
+		ui r = cluster[i];
+		if(sqrt(euclidean_dist2(curC.centerX, curC.centerY, ploc[2*r], ploc[2*r+1])) <= curC.radius) continue ;
+
+		// Form a circumcircle and classify it on left or right side
+		double cross = cross(qpX, qpY, ploc[2*r]-ploc[2*p], ploc[2*r+1]-ploc[2*p+1]);
+
+		Circle C = makeCircumcircle(p, q, r);
+
+		if (C.radius < 0)
+			continue;
+		else if (cross > 0 && 
+			(left.radius < 0 || cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) > cross(qpX, qpY, left.centerX-ploc[2*p], left.centerY-ploc[2*p+1])))
+			left = C;
+		else if (cross < 0 && 
+			(right.radius < 0 || cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) < cross(qpX, qpY, right.centerX-ploc[2*p], right.centerY-ploc[2*p+1])))
+			right = C;
+	}
+
+	// Select which circle to return
+	if (left.radius < 0 && right.radius < 0)
+		return curC;
+	else if (left.radius < 0)
+		return right;
+	else if (right.radius < 0)
+		return left;
+	else
+		return left.radius <= right.radius ? left : right;
+
+}
+
+// Two vertices circle
+Circle Graph::make_diameter(ui u, ui v) {
+	Point c{(a.x + b.x) / 2, (a.y + b.y) / 2};
+	return Circle{c, max(c.distance(a), c.distance(b))};
+}
+
+// Three vertices circle
+Circle Graph::make_circumcircle(ui a, ui b, ui c) {
+	// Mathematical algorithm from Wikipedia: Circumscribed circle
+	double ox = (min(min(a.x, b.x), c.x) + max(min(a.x, b.x), c.x)) / 2;
+	double oy = (min(min(a.y, b.y), c.y) + max(min(a.y, b.y), c.y)) / 2;
+	double ax = a.x - ox,  ay = a.y - oy;
+	double bx = b.x - ox,  by = b.y - oy;
+	double cx = c.x - ox,  cy = c.y - oy;
+	double d = (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) * 2;
+	if (d == 0)
+		return Circle::INVALID;
+	double x = ((ax*ax + ay*ay) * (by - cy) + (bx*bx + by*by) * (cy - ay) + (cx*cx + cy*cy) * (ay - by)) / d;
+	double y = ((ax*ax + ay*ay) * (cx - bx) + (bx*bx + by*by) * (ax - cx) + (cx*cx + cy*cy) * (bx - ax)) / d;
+	Point p{ox + x, oy + y};
+	double r = max(max(p.distance(a), p.distance(b)), p.distance(c));
+	return Circle{p, r};
+}
+
+
+double Graph::cross(double px, double py, double qx, double qy) {
+	return px * qy - py * qx;
 }
 
 

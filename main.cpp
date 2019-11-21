@@ -46,6 +46,8 @@ int main(int argc, char *argv[]) {
 
 	if(strcmp(argv[1], "GSGD") == 0) graph->gsgd(argv[3], atoi(argv[4]), atoi(argv[5]));
 	else if(strcmp(argv[1], "DGCD") == 0) graph->dgcd(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "EXACT") == 0) graph->exact(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "APPRO") == 0) graph->appro(argv[3], atoi(argv[4]), atoi(argv[5]));
 	else usage();
 
 #ifdef _LINUX_
@@ -59,9 +61,9 @@ int main(int argc, char *argv[]) {
 	printf("Total time without IO: %lld microsecond, %lf millisecond, %lf second\n", mtime-mtime1, (float)(mtime-mtime1)/1000, (float)(mtime-mtime1)/1000000);
 #endif
 
-	// if(argc >= 5 && strcmp(argv[6], "output") == 0) graph->output(argv[3], argv[4], argv[5]);
+	if(argc > 6 && strcmp(argv[6], "output") == 0) graph->output(argv[3], argv[4], argv[5]);
 
-	// if(argc >= 6 && strcmp(argv[7], "cluster") == 0) graph->cluster_count(argv[3], argv[4], argv[5]);
+	if(argc > 7 && strcmp(argv[7], "cluster") == 0) graph->cluster_count(argv[3], argv[4], argv[5]);
 
 	return 0;
 }
