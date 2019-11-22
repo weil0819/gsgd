@@ -15,10 +15,12 @@ using namespace std;
 
 
 struct Circle {
+	static const Circle INVALID;
+
 	double centerX;
 	double centerY;
 	double radius;	
-}
+};
 
 
 class Graph {
@@ -58,9 +60,10 @@ public:
 
 	void dgcd(const char *eps_s, int mu, int gamma) ;
 
-	void exact(const char *eps_s, int mu, int gamma) ; 
+	void baseline(const char *eps_s, int mu, int gamma) ; 
 
-	void appro(const char *eps_s, int mu, int gamma) ;
+	void advance(const char *eps_s, int mu, int gamma) ;
+
 
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) ;
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu, unordered_set<int> &US) ;
@@ -70,6 +73,8 @@ public:
 	void cluster_count(const char *eps_s, const char *miu, const char *dist) ;  
 
 	void renew_cluster(int eps_a2, int eps_b2, int mu, vector<int> &curList, vector<vector<int> > &cluster) ; 
+
+	void floyd_diameter(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) ;
 
 	void reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) ;
 
@@ -102,8 +107,7 @@ private:
 
 	bool is_subset(vector<int> &A, vector<int> &B) ; 
 
-	// Circle Issue
-
+	// Circle Functions ... 
 	Circle make_mcc(vector<int> &cluster) ;
 
 	Circle make_circle_one_point(vector<int> &cluster, int end, ui u) ;
@@ -114,7 +118,11 @@ private:
 
 	Circle make_circumcircle(ui a, ui b, ui c) ;
 
-	double cross(double px, double py, double qx, double qy) ;
+	double make_cross(double px, double py, double qx, double qy) ; 
+
+	double make_distance(double px, double py, double qx, double qy) ;
+
+	bool make_contains(double centerX, double centerY, double radius, ui p) ;
 
 };
 

@@ -12,6 +12,9 @@ bool myComp(const vector<int> &A, const vector<int> &B) {
 	return A.size() > B.size();
 }
 
+const Circle Circle::INVALID{0, 0, -1};
+static default_random_engine randGen((std::random_device())());
+
 Graph::Graph(const char *_dir) {
 	dir = string(_dir);
 
@@ -482,7 +485,7 @@ void Graph::dgcd(const char *eps_s, int miu, int dist) {
 }
 
 
-void Graph::exact(const char *eps_s, int mu, int gamma) {
+void Graph::baseline(const char *eps_s, int mu, int gamma) {
 
 	int eps_a2 = 0, eps_b2 = 0;
 	get_eps(eps_s, eps_a2, eps_b2);
@@ -613,7 +616,7 @@ void Graph::exact(const char *eps_s, int mu, int gamma) {
 	mtime1 = seconds1*1000000 + useconds1;
 #endif
 
-	// Collect a set of clusters
+	// Collect a set of clusters ... 
 	vector<vector<int> > clusters(n);
 
 	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
@@ -626,9 +629,9 @@ void Graph::exact(const char *eps_s, int mu, int gamma) {
 		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
 	}
 
-	// Iterate each cluster
+	// Iterate each cluster ... 
 	for(ui c = 0; c < n; c++) {
-		if(clusters[c].size() < 3) continue ;
+		if(clusters[c].size() < mu) continue ;
 		printf("============================ORIGINAL CLUSTER: %d has %d nodes==============================\n", c, (int)clusters[c].size());
 		vector<vector<int> > final_clusters;
 		vector<int> preList;
@@ -663,7 +666,7 @@ void Graph::exact(const char *eps_s, int mu, int gamma) {
 
 							final_clusters.insert(final_clusters.end(), cur_clusters.begin(), cur_clusters.end());	
 						} 
-					}else printf("radius = %.2f \n", sqrt(r2));
+					}
 				}
 			}
 		}
@@ -678,9 +681,9 @@ void Graph::exact(const char *eps_s, int mu, int gamma) {
 				printf("cluster-%d \t #cluster=%d \n", i, (int)final_clusters[i].size());
 				for(auto u: final_clusters[i]) printf("%d\t", u);
 					printf("\n************************************************************************\n");
+				break;
 			}			
 		}
-		if(c == 594) exit(1);	
 	}
 
 #ifdef _LINUX_
@@ -696,7 +699,9 @@ void Graph::exact(const char *eps_s, int mu, int gamma) {
 }
 
 
-void Graph::appro(const char *eps_s, int mu, int gamma) {
+void Graph::advance(const char *eps_s, int mu, int gamma) {
+
+	// Get eps value ... 
 	int eps_a2 = 0, eps_b2 = 0;
 	get_eps(eps_s, eps_a2, eps_b2);
 	eps_a2 *= eps_a2;
@@ -707,7 +712,7 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 	gettimeofday(&start, NULL);
 #endif
 
-	// Cluster-Tric
+	// Cluster-Tric ... 
 	ui *deg = new ui[n];
 	for(ui i = 0;i < n;i ++) deg[i] = pstart[i+1]-pstart[i];
 
@@ -779,6 +784,7 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 		if(similar[j] == 1) ++ similar_degree[i];
 	}
 
+	// Cluter core nodes ... 
 	if(pa == NULL) pa = new int[n];
 	if(rank == NULL) rank = new int[n];
 	for(ui i = 0;i < n;i ++) {
@@ -804,6 +810,7 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 		if(i < cid[x]) cid[x] = i;
 	}
 
+	// Cluster non-core nodes ... 
 	vector<pair<int,int> > noncore_cluster;
 	noncore_cluster.reserve(n);
 
@@ -826,7 +833,7 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 	mtime1 = seconds1*1000000 + useconds1;
 #endif
 
-	// Collect a set of clusters
+	// Collect a set of clusters ... 
 	vector<vector<int> > clusters(n);
 
 	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
@@ -839,15 +846,15 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
 	}
 
-	// Iterate each cluster
+	// Iterate each cluster ... 
 	for(ui c = 0; c < n; c++) {
-		if(clusters[c].size() < 3) continue ;
+		if(clusters[c].size() < mu) continue ;
 
-		printf("======================ORIGINAL CLUSTER: %d has %d nodes========================\n", c, (int)clusters[c].size());
-		for(int i = 0; i < clusters[c].size(); i++) {
-			printf("%d\t", clusters[c][i]);
-		}
-		printf("\n");
+		// printf("======================ORIGINAL CLUSTER: %d has %d nodes========================\n", c, (int)clusters[c].size());
+		// for(int i = 0; i < clusters[c].size(); i++) {
+		// 	printf("%d\t", clusters[c][i]);
+		// }
+		// printf("\n");
 
 		// Is there a way to compute MCC for such a cluster?
 		// then decide radius/diameter 
@@ -856,24 +863,62 @@ void Graph::appro(const char *eps_s, int mu, int gamma) {
 		// https://blog.csdn.net/niiick/article/details/89153096 
 		// https://blog.csdn.net/wu_tongtong/article/details/79362339 (*)
 		
+		Circle C = make_mcc(clusters[c]);
+		// printf("==============ORIGINAL CLUSTER: %d has %d nodes===============\n", c, (int)clusters[c].size());
+		// printf("C.centerX = %.2f, C.centerY= %.2f, C.radius = %.2f \n", C.centerX, C.centerY, C.radius);
 
+		if(C.radius > gamma) {
+			printf("============================ORIGINAL CLUSTER: %d has %d nodes==============================\n", c, (int)clusters[c].size());
+			printf("\t*** centerX = %.2f, centerY= %.2f, radius = %.2f \n", C.centerX, C.centerY, C.radius);
+			// for(int i = 0; i < clusters[c].size(); i++) {
+			// 	printf("%d\t", clusters[c][i]);
+			// }
+			// printf("\n");
 
+			// reduce clusters[c] to make it as a cluster in MCC
+			// vector<int> curList;
+			// for(int i = 0; i < clusters[c].size(); i++) {
+			// 	ui u = clusters[c][i];
+
+			// 	double dist = make_distance(C.centerX, C.centerY, ploc[2*u], ploc[2*u+1]);
+			// 	if(dist <= gamma) {
+			// 		curList.pb(u);
+			// 	}
+			// }
+			// printf("\t*** There are %d vertices in circle \n", (int)curList.size());
+
+			// vector<vector<int> > output;
+			// renew_cluster(eps_a2, eps_b2, mu, curList, output);
+
+			// if(output.empty()) {
+			// 	printf("\t*** new cluster is empty \n");
+			// 	continue ;
+			// }
+			// for(int i = 0; i < output.size(); i++) {
+			// 	printf("\t*** new cluster has %d nodes \n", (int)output[i].size());
+			// 	for(int j = 0; j < output[i].size(); j++) {
+			// 		printf("%d\t", output[i][j]);
+			// 	}
+			// 	printf("\n");
+			// }
+
+		}
 
 		// utilize Floyd-Warshall algorithm to calculate shortest-path between any two nodes in clusters[c].
 		// calculate e(v) and d(G), nodes with e(v) > gamma can be considered as candidate to drop
 		// vector<int> output;
-		// reduce_cluster(eps_a2, eps_b2, mu, gamma, clusters[c], output);		
+		// floyd_diameter(eps_a2, eps_b2, mu, gamma, clusters[c], output);	
 
-		vector<vector<int> > output;
-		renew_cluster(eps_a2, eps_b2, mu, clusters[c], output);
-		if(output.empty()) continue ;
-		for(int i = 0; i < output.size(); i++) {
-			printf("new cluster has %d nodes \n", (int)output[i].size());
-			for(int j = 0; j < output[i].size(); j++) {
-				printf("%d\t", output[i][j]);
-			}
-			printf("\n");
-		}
+		// vector<vector<int> > output;
+		// renew_cluster(eps_a2, eps_b2, mu, clusters[c], output);
+		// if(output.empty()) continue ;
+		// for(int i = 0; i < output.size(); i++) {
+		// 	printf("new cluster has %d nodes \n", (int)output[i].size());
+		// 	for(int j = 0; j < output[i].size(); j++) {
+		// 		printf("%d\t", output[i][j]);
+		// 	}
+		// 	printf("\n");
+		// }
 		
 	}
 
@@ -1142,7 +1187,7 @@ void Graph::renew_cluster(int eps_a2, int eps_b2, int mu, vector<int> &curList, 
 }
 
 
-void Graph::reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) {
+void Graph::floyd_diameter(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) {
 	unordered_map<int, int> node_map;
 	unordered_map<int, int> node_map_re;
 	int N = cluster.size();
@@ -1183,6 +1228,11 @@ void Graph::reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int
 		ecc[i] = *max_element(dist[i].begin(), dist[i].end());
 	}
 	sort(ecc.begin(), ecc.end());
+}
+
+
+void Graph::reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) {
+
 }
 
 
@@ -1328,7 +1378,6 @@ double Graph::mcc_radius2(int v1, int v2, int v3) {
 	dist2[2] = euclidean_dist2(v2, v3);
 
 	// Step-2: judge the triangle (obtuse or right or acute) and find the center of the MCC.
-
 	int indMax = 0;
 	for(int i = 1; i < dist2.size(); i++) {
 		if(dist2[i] > dist2[indMax]) indMax = i;
@@ -1556,16 +1605,19 @@ bool Graph::is_subset(vector<int> &A, vector<int> &B) {
 	return includes(A.begin(), A.end(), B.begin(), B.end());
 }
 
+
+// ****** Circle Functions ******
 Circle Graph::make_mcc(vector<int> &cluster) { 
 	// shuffle original cluster
-	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-	shuffle(cluster.begin(), cluster.end(), default_random_engine(seed));
+	// unsigned seed = chrono::system_clock::now().time_since_epoch().count();	
+	// shuffle(cluster.begin(), cluster.end(), default_random_engine(seed));
+	shuffle(cluster.begin(), cluster.end(), randGen);
 
 	// progressively add vertices to MCC or recompute MCC
-	Circle C;
+	Circle C = Circle::INVALID;
 	for(ui i = 0; i < cluster.size(); i++) {
 		ui p = cluster[i];
-		if(C.radius < 0 || sqrt(euclidean_dist2(C.centerX, C.centerY, ploc[2*p], ploc[2*p+1])) > C.radius) {
+		if(C.radius < 0 || !make_contains(C.centerX, C.centerY, C.radius, p)) {
 			C = make_circle_one_point(cluster, i+1, p);
 		}
 	}
@@ -1578,7 +1630,7 @@ Circle Graph::make_circle_one_point(vector<int> &cluster, int end, ui p) {
 
 	for(int i = 0; i < end; i++) {
 		ui q = cluster[i];
-		if(sqrt(euclidean_dist2(C.centerX, C.centerY, ploc[2*q], ploc[2*q+1])) > C.radius) {
+		if(!make_contains(C.centerX, C.centerY, C.radius, q)) {
 			if(C.radius == 0) C = make_diameter(p,q);				// circle with diameter = |p,q|
 			else C = make_circle_two_point(cluster, i+1, p, q);		// circle with triangle (p,q,?)
 		}
@@ -1589,7 +1641,8 @@ Circle Graph::make_circle_one_point(vector<int> &cluster, int end, ui p) {
 // Two boundary vertices known
 Circle Graph::make_circle_two_point(vector<int> &cluster, int end, ui p, ui q) {
 	Circle curC = make_diameter(p,q);
-	Circle left, right;
+	Circle left  = Circle::INVALID;
+	Circle right = Circle::INVALID;
 
 	// For each vertex not in the two-point circle
 	double qpX = ploc[2*q] - ploc[2*p];
@@ -1597,20 +1650,20 @@ Circle Graph::make_circle_two_point(vector<int> &cluster, int end, ui p, ui q) {
 
 	for(int i = 0; i < end; i++) {
 		ui r = cluster[i];
-		if(sqrt(euclidean_dist2(curC.centerX, curC.centerY, ploc[2*r], ploc[2*r+1])) <= curC.radius) continue ;
+		if(make_contains(curC.centerX, curC.centerY, curC.radius, r)) continue ;
 
 		// Form a circumcircle and classify it on left or right side
-		double cross = cross(qpX, qpY, ploc[2*r]-ploc[2*p], ploc[2*r+1]-ploc[2*p+1]);
+		double cross = make_cross(qpX, qpY, ploc[2*r]-ploc[2*p], ploc[2*r+1]-ploc[2*p+1]);
 
-		Circle C = makeCircumcircle(p, q, r);
+		Circle C = make_circumcircle(p, q, r);
 
 		if (C.radius < 0)
 			continue;
 		else if (cross > 0 && 
-			(left.radius < 0 || cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) > cross(qpX, qpY, left.centerX-ploc[2*p], left.centerY-ploc[2*p+1])))
+			(left.radius < 0 || make_cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) > make_cross(qpX, qpY, left.centerX-ploc[2*p], left.centerY-ploc[2*p+1])))
 			left = C;
 		else if (cross < 0 && 
-			(right.radius < 0 || cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) < cross(qpX, qpY, right.centerX-ploc[2*p], right.centerY-ploc[2*p+1])))
+			(right.radius < 0 || make_cross(qpX, qpY, C.centerX-ploc[2*p], C.centerY-ploc[2*p+1]) < make_cross(qpX, qpY, right.centerX-ploc[2*p], right.centerY-ploc[2*p+1])))
 			right = C;
 	}
 
@@ -1628,31 +1681,52 @@ Circle Graph::make_circle_two_point(vector<int> &cluster, int end, ui p, ui q) {
 
 // Two vertices circle
 Circle Graph::make_diameter(ui u, ui v) {
-	Point c{(a.x + b.x) / 2, (a.y + b.y) / 2};
-	return Circle{c, max(c.distance(a), c.distance(b))};
+	double centerX = (ploc[2*u] + ploc[2*v]) / 2;
+	double centerY = (ploc[2*u+1] + ploc[2*v+1]) / 2;
+
+	return Circle{centerX, centerY, max(make_distance(centerX, centerY, ploc[2*u], ploc[2*u+1]), make_distance(centerX, centerY, ploc[2*v], ploc[2*v+1]))};
 }
 
 // Three vertices circle
 Circle Graph::make_circumcircle(ui a, ui b, ui c) {
 	// Mathematical algorithm from Wikipedia: Circumscribed circle
-	double ox = (min(min(a.x, b.x), c.x) + max(min(a.x, b.x), c.x)) / 2;
-	double oy = (min(min(a.y, b.y), c.y) + max(min(a.y, b.y), c.y)) / 2;
-	double ax = a.x - ox,  ay = a.y - oy;
-	double bx = b.x - ox,  by = b.y - oy;
-	double cx = c.x - ox,  cy = c.y - oy;
+	double ox = (min(min(ploc[2*a], ploc[2*b]), ploc[2*c]) + max(min(ploc[2*a], ploc[2*b]), ploc[2*c])) / 2;
+	double oy = (min(min(ploc[2*a+1], ploc[2*b+1]), ploc[2*c+1]) + max(min(ploc[2*a+1], ploc[2*b+1]), ploc[2*c+1])) / 2;
+
+	double ax = ploc[2*a] - ox;
+	double ay = ploc[2*a+1] - oy;
+	double bx = ploc[2*b] - ox; 
+	double by = ploc[2*b+1] - oy;
+	double cx = ploc[2*c] - ox; 
+	double cy = ploc[2*c+1] - oy;
+
 	double d = (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) * 2;
+
 	if (d == 0)
 		return Circle::INVALID;
+
 	double x = ((ax*ax + ay*ay) * (by - cy) + (bx*bx + by*by) * (cy - ay) + (cx*cx + cy*cy) * (ay - by)) / d;
 	double y = ((ax*ax + ay*ay) * (cx - bx) + (bx*bx + by*by) * (ax - cx) + (cx*cx + cy*cy) * (bx - ax)) / d;
-	Point p{ox + x, oy + y};
-	double r = max(max(p.distance(a), p.distance(b)), p.distance(c));
-	return Circle{p, r};
+
+	double centerX = ox + x; 
+	double centerY = oy + y;
+
+	double radius = max(max(make_distance(centerX, centerY, ploc[2*a], ploc[2*a+1]), make_distance(centerX, centerY, ploc[2*b], ploc[2*b+1])), 
+		make_distance(centerX, centerY, ploc[2*c], ploc[2*c+1]));
+
+	return Circle{centerX, centerY, radius};
 }
 
-
-double Graph::cross(double px, double py, double qx, double qy) {
+double Graph::make_cross(double px, double py, double qx, double qy) {
 	return px * qy - py * qx;
+}
+
+double Graph::make_distance(double px, double py, double qx, double qy) {
+	return hypot(px - qx, py - qy);
+}
+
+bool Graph::make_contains(double centerX, double centerY, double radius, ui p) {
+	return make_distance(centerX, centerY, ploc[2*p], ploc[2*p+1]) <= radius * MULTIPLICATIVE_EPSILON;
 }
 
 
