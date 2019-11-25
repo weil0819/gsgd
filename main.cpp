@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 	else if(strcmp(argv[1], "DGCD") == 0) graph->dgcd(argv[3], atoi(argv[4]), atoi(argv[5]));
 	else if(strcmp(argv[1], "BASELINE") == 0) graph->baseline(argv[3], atoi(argv[4]), atoi(argv[5]));
 	else if(strcmp(argv[1], "ADVANCE") == 0) graph->advance(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "TOPK") == 0) graph->topk(argv[3], atoi(argv[4]), atoi(argv[5]));
 	else usage();
 
 #ifdef _LINUX_

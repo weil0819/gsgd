@@ -64,6 +64,8 @@ public:
 
 	void advance(const char *eps_s, int mu, int gamma) ;
 
+	void topk(const char *eps_s, int mu, int gamma) ;
+
 
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) ;
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu, unordered_set<int> &US) ;
@@ -76,9 +78,7 @@ public:
 
 	void floyd_diameter(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) ;
 
-	void reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) ;
-
-
+	
 private:
 	int naive_similar_check(int u, int v, int eps_a2, int eps_b2) ;
 	int naive_similar_check(int u, int v, int eps_a2, int eps_b2, unordered_set<int> &US) ;

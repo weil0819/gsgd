@@ -847,6 +847,7 @@ void Graph::advance(const char *eps_s, int mu, int gamma) {
 	}
 
 	// Iterate each cluster ... 
+	int cnt = 0;
 	for(ui c = 0; c < n; c++) {
 		if(clusters[c].size() < mu) continue ;
 
@@ -864,45 +865,46 @@ void Graph::advance(const char *eps_s, int mu, int gamma) {
 		// https://blog.csdn.net/wu_tongtong/article/details/79362339 (*)
 		
 		Circle C = make_mcc(clusters[c]);
-		// printf("==============ORIGINAL CLUSTER: %d has %d nodes===============\n", c, (int)clusters[c].size());
-		// printf("C.centerX = %.2f, C.centerY= %.2f, C.radius = %.2f \n", C.centerX, C.centerY, C.radius);
-
 		if(C.radius > gamma) {
-			printf("============================ORIGINAL CLUSTER: %d has %d nodes==============================\n", c, (int)clusters[c].size());
-			printf("\t*** centerX = %.2f, centerY= %.2f, radius = %.2f \n", C.centerX, C.centerY, C.radius);
-			// for(int i = 0; i < clusters[c].size(); i++) {
-			// 	printf("%d\t", clusters[c][i]);
-			// }
-			// printf("\n");
-
-			// reduce clusters[c] to make it as a cluster in MCC
-			// vector<int> curList;
-			// for(int i = 0; i < clusters[c].size(); i++) {
-			// 	ui u = clusters[c][i];
-
-			// 	double dist = make_distance(C.centerX, C.centerY, ploc[2*u], ploc[2*u+1]);
-			// 	if(dist <= gamma) {
-			// 		curList.pb(u);
-			// 	}
-			// }
-			// printf("\t*** There are %d vertices in circle \n", (int)curList.size());
-
-			// vector<vector<int> > output;
-			// renew_cluster(eps_a2, eps_b2, mu, curList, output);
-
-			// if(output.empty()) {
-			// 	printf("\t*** new cluster is empty \n");
-			// 	continue ;
-			// }
-			// for(int i = 0; i < output.size(); i++) {
-			// 	printf("\t*** new cluster has %d nodes \n", (int)output[i].size());
-			// 	for(int j = 0; j < output[i].size(); j++) {
-			// 		printf("%d\t", output[i][j]);
-			// 	}
-			// 	printf("\n");
-			// }
-
+			clusters[c].clear();
 		}
+
+		// if(C.radius > gamma) {
+		// 	printf("============================ORIGINAL CLUSTER: %d has %d nodes==============================\n", c, (int)clusters[c].size());
+		// 	printf("\t*** centerX = %.2f, centerY= %.2f, radius = %.2f \n", C.centerX, C.centerY, C.radius);
+		// 	for(int i = 0; i < clusters[c].size(); i++) {
+		// 		printf("%d\t", clusters[c][i]);
+		// 	}
+		// 	printf("\n");
+
+		// 	// reduce clusters[c] to make it as a cluster in MCC
+		// 	vector<int> curList;
+		// 	for(int i = 0; i < clusters[c].size(); i++) {
+		// 		ui u = clusters[c][i];
+
+		// 		double dist = make_distance(C.centerX, C.centerY, ploc[2*u], ploc[2*u+1]);
+		// 		if(dist <= gamma) {
+		// 			curList.pb(u);
+		// 		}
+		// 	}
+		// 	printf("\t*** There are %d vertices in circle \n", (int)curList.size());
+
+		// 	vector<vector<int> > output;
+		// 	renew_cluster(eps_a2, eps_b2, mu, curList, output);
+
+		// 	if(output.empty()) {
+		// 		printf("\t*** new cluster is empty \n");
+		// 		continue ;
+		// 	}
+		// 	for(int i = 0; i < output.size(); i++) {
+		// 		printf("\t*** new cluster has %d nodes \n", (int)output[i].size());
+		// 		for(int j = 0; j < output[i].size(); j++) {
+		// 			printf("%d\t", output[i][j]);
+		// 		}
+		// 		printf("\n");
+		// 	}
+
+		// }
 
 		// utilize Floyd-Warshall algorithm to calculate shortest-path between any two nodes in clusters[c].
 		// calculate e(v) and d(G), nodes with e(v) > gamma can be considered as candidate to drop
@@ -932,6 +934,209 @@ void Graph::advance(const char *eps_s, int mu, int gamma) {
 
 	printf("Clustering time: %lld, MMC time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
 #endif
+}
+
+
+void Graph::topk(const char *eps_s, int mu, int gamma) {
+	// Get eps value ... 
+	int eps_a2 = 0, eps_b2 = 0;
+	get_eps(eps_s, eps_a2, eps_b2);
+	eps_a2 *= eps_a2;
+	eps_b2 *= eps_b2;
+
+#ifdef _LINUX_
+	struct timeval start, end1, end;
+	gettimeofday(&start, NULL);
+#endif
+
+	// Cluster-Tric ... 
+	ui *deg = new ui[n];
+	for(ui i = 0;i < n;i ++) deg[i] = pstart[i+1]-pstart[i];
+
+	ui *adj = new ui[n];
+	memset(adj, 0, sizeof(ui)*n);
+
+	ui *similar = new ui[m];
+	memset(similar, 0, sizeof(ui)*m);
+
+	ui *pend = new ui[n];		
+
+	for(ui i = 0;i < n;i ++) { 
+
+		ui &end = pend[i] = pstart[i]; 
+
+		ui j = pstart[i+1]; 
+
+		while(true) {
+
+			while(end < j&&(deg[edges[end]] < deg[i]||(deg[edges[end]]==deg[i]&&edges[end]<i))) ++ end;
+
+			while(j > end&&(deg[edges[j-1]] > deg[i]||(deg[edges[j-1]]==deg[i]&&edges[j-1]>i))) -- j;
+
+			if(end >= j) break;
+
+			swap(edges[end], edges[j-1]);
+		}
+		sort(edges+pend[i], edges+pstart[i+1]);
+	}
+	
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = j+1;
+
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			for(ui k = pstart[v];k < pend[v];k ++) if(adj[edges[k]]) {
+				++ similar[j];		// edges[j]
+				++ similar[k];		// edges[k]
+				++ similar[adj[edges[k]] - 1];
+			}
+		}
+
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = 0;
+	}
+
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			similar[j] += 2;
+
+			if(((long long)similar[j])*((long long)similar[j])*eps_b2 >= ((long long)(deg[u]+1))*((long long)(deg[v]+1))*eps_a2) similar[j] = 1;
+			else similar[j] = 0;
+
+			ui r_id = binary_search(edges+pend[v], pstart[v+1]-pend[v], u) + pend[v];
+			similar[r_id] = similar[j];
+		}
+	}
+
+	delete[] pend; pend = NULL;
+	delete[] deg; deg = NULL;
+	delete[] adj; adj = NULL;
+
+	if(similar_degree == NULL) similar_degree = new int[n];
+	memset(similar_degree, 0, sizeof(int)*n);
+
+	for(ui i = 0;i < n;i ++) for(ui j = pstart[i];j < pstart[i+1];j ++) {
+		if(similar[j] == 1) ++ similar_degree[i];
+	}
+
+	// Cluter core nodes ... 
+	if(pa == NULL) pa = new int[n];
+	if(rank == NULL) rank = new int[n];
+	for(ui i = 0;i < n;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+
+	for(ui i = 0;i < n;i ++) {
+		if(similar_degree[i] < mu) continue;
+
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] < mu) continue;		
+
+			if(similar[j] == 1) my_union(pa, rank, i, edges[j]);
+		}
+	}
+
+	if(cid == NULL) cid = new int[n];
+	for(ui i = 0;i < n;i ++) cid[i] = n;
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		int x = find_root(pa, i);
+		if(i < cid[x]) cid[x] = i;
+	}
+
+	// Cluster non-core nodes ... 
+	vector<pair<int,int> > noncore_cluster;
+	noncore_cluster.reserve(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] >= mu) continue;
+
+			if(similar[j] == 1) noncore_cluster.pb(mp(cid[pa[i]], edges[j]));
+		}
+	}
+
+	delete[] similar; similar = NULL;
+
+#ifdef _LINUX_
+	gettimeofday(&end1, NULL);
+
+	long long mtime1, seconds1, useconds1;
+	seconds1 = end1.tv_sec - start.tv_sec;
+	useconds1 = end1.tv_usec - start.tv_usec;
+	mtime1 = seconds1*1000000 + useconds1;
+#endif
+
+	// Collect a set of clusters ... 
+	vector<vector<int> > clusters(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		clusters[cid[find_root(pa, i)]].pb(i);
+	}
+
+	sort(noncore_cluster.begin(), noncore_cluster.end());
+	noncore_cluster.erase(unique(noncore_cluster.begin(), noncore_cluster.end()), noncore_cluster.end());
+	for(ui i = 0;i < noncore_cluster.size();i ++) {
+		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
+	}
+
+	// Iterate each cluster ... 
+	vector<pair<int, double> > cluster_sets;
+	int cnt = 0;
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < mu) continue ;
+		
+		Circle C = make_mcc(clusters[c]);	
+		cluster_sets.pb(mp(clusters[c].size(),C.radius));
+		// printf("---------------------------------------------------------\n");
+		// for(int i = 0; i < clusters[c].size(); i++) {
+		// 	printf("%d\t", clusters[c][i]);
+		// }
+		// printf("\n");
+	}
+
+	// top-k selection ... 
+	char *visited = new char[cluster_sets.size()];
+	memset(visited, 0, sizeof(char)*cluster_sets.size());
+
+	double density_C = 0.0;
+	for(int i = 0; i <= k; i++) {
+		double density_max = 0.0;
+		int ind_max = -1;
+		for(int j = 0; j < cluster_sets.size(); j++) {
+			if(visited[j]) continue ;
+
+			double density_upper = (double)cluster_sets[j].first / cluster_sets[j].second;
+			if((density_max - (density_C + density_upper)) >= EPSILON) continue ;
+
+			double tmp = density_C;
+			
+			
+			if((tmp - density_max) > EPSILON) {
+				density_max = tmp;
+				ind_max = j;
+			}
+		}
+		if(ind_max == -1) break;
+		visited[ind_max] = 1;
+		density_C = density_max;
+	}
+
+	delete[] visited; visited = NULL;
+
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("Clustering time: %lld, MMC time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
+#endif	
 }
 
 
@@ -1231,11 +1436,6 @@ void Graph::floyd_diameter(int eps_a2, int eps_b2, int mu, int gamma, vector<int
 }
 
 
-void Graph::reduce_cluster(int eps_a2, int eps_b2, int mu, int gamma, vector<int> &cluster, vector<int> &output) {
-
-}
-
-
 void Graph::eps_neighbor(ui v, int eps_a2, int eps_b2, int dist, vector<pair<ui, ui> > &H, vector<ui> &S) {
 
 	S.clear();		// S stores the epsilon-neighborhood of user -- v 
@@ -1417,7 +1617,7 @@ double Graph::mcc_radius2(int v1, int v2, int v3) {
 
 
 double Graph::mcc_radius2(int v1, int v2, int v3, double &centerX, double &centerY) {
-		double radius2 = 0.0;
+	double radius2 = 0.0;
 
 	// Step-1: compute pairwise distance. 
 	vector<double> dist2; 
@@ -1626,7 +1826,7 @@ Circle Graph::make_mcc(vector<int> &cluster) {
 
 // One boundary vertex known
 Circle Graph::make_circle_one_point(vector<int> &cluster, int end, ui p) {
-	Circle C{ploc[2*p], ploc[2*p+1], 0};
+	Circle C{ploc[2*p], ploc[2*p+1], 0};							// make a circle with p as center
 
 	for(int i = 0; i < end; i++) {
 		ui q = cluster[i];
@@ -1726,7 +1926,7 @@ double Graph::make_distance(double px, double py, double qx, double qy) {
 }
 
 bool Graph::make_contains(double centerX, double centerY, double radius, ui p) {
-	return make_distance(centerX, centerY, ploc[2*p], ploc[2*p+1]) <= radius * MULTIPLICATIVE_EPSILON;
+	return make_distance(centerX, centerY, ploc[2*p], ploc[2*p+1]) <= radius * EPSILON;
 }
 
 
