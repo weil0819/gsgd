@@ -29,7 +29,7 @@ private:
 	ui n, m; 		//number of nodes and edges of the graph
 
 	int eps_a2, eps_b2, miu; // eps_a2/eps_b2 = eps^2 
-	int dist;				 // threshold of distance
+	int gamma;				 // threshold of distance
 
 	ui *pstart; 	//offset of neighbors of nodes
 	int *edges; 	//adjacent ids of edges 
@@ -56,23 +56,34 @@ public:
 
 	void read_graph() ;
 
+	// AI3D
 	void gsgd(const char *eps_s, int mu, int gamma) ;
 
 	void dgcd(const char *eps_s, int mu, int gamma) ;
 
+
+	// cluster + naive MCC  
 	void baseline(const char *eps_s, int mu, int gamma) ; 
 
+	// cluster + random MCC 
 	void advance(const char *eps_s, int mu, int gamma) ;
 
-	void topk(const char *eps_s, int mu, int gamma) ;
+	// greedy top-k 
+	void greedy_topk(const char *eps_s, int mu, int gamma, int k) ; 
+
+	// swap top-k 
+	void swap_topk(const char *eps_s, int mu, int gamma, int k) ; 
+
+	// naive top-k
+	void topk(const char *eps_s, int mu, int gamma, int k) ;
 
 
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) ;
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu, unordered_set<int> &US) ;
 
-	void output(const char *eps_s, const char *miu, const char *dist) ; 
+	void output(const char *eps_s, const char *miu, const char *gamma) ; 
 
-	void cluster_count(const char *eps_s, const char *miu, const char *dist) ;  
+	void cluster_count(const char *eps_s, const char *miu, const char *gamma) ;  
 
 	void renew_cluster(int eps_a2, int eps_b2, int mu, vector<int> &curList, vector<vector<int> > &cluster) ; 
 

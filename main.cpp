@@ -9,7 +9,7 @@
 #include "Graph.h"
 
 void usage() {
-	printf("Usage: [0]exe [1]alg [2]graph-dir [3]similarity-threshold [4]density-threshold [5]distance-threshold [6 optional]output [7 optional] cluster\n");
+	printf("Usage: [0]exe [1]alg [2]graph-dir [3]similarity-threshold [4]density-threshold [5]distance-threshold [6]k value [7 optional]output [8 optional] cluster\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	printf("**** Geo-Social Group Detection (Release): %s, %s, %s, %s, %s *** ", argv[1], argv[2], argv[3], argv[4], argv[5]);
+	printf("**** Geo-Social Group Detection (Release): %s, %s, %s, %s, %s, %s *** ", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6]);
 	printf("\n");
 
 #ifdef _LINUX_
@@ -44,11 +44,13 @@ int main(int argc, char *argv[]) {
 	end1 = clock();
 #endif
 
-	if(strcmp(argv[1], "GSGD") == 0) graph->gsgd(argv[3], atoi(argv[4]), atoi(argv[5]));
-	else if(strcmp(argv[1], "DGCD") == 0) graph->dgcd(argv[3], atoi(argv[4]), atoi(argv[5]));
-	else if(strcmp(argv[1], "BASELINE") == 0) graph->baseline(argv[3], atoi(argv[4]), atoi(argv[5]));
-	else if(strcmp(argv[1], "ADVANCE") == 0) graph->advance(argv[3], atoi(argv[4]), atoi(argv[5]));
-	else if(strcmp(argv[1], "TOPK") == 0) graph->topk(argv[3], atoi(argv[4]), atoi(argv[5]));
+	if(strcmp(argv[1], "gsgd") == 0) graph->gsgd(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "gdcd") == 0) graph->dgcd(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "naive") == 0) graph->baseline(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "random") == 0) graph->advance(argv[3], atoi(argv[4]), atoi(argv[5]));
+	else if(strcmp(argv[1], "greedy") == 0) graph->greedy_topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6])); 
+	else if(strcmp(argv[1], "swap") == 0) graph->swap_topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
+	else if(strcmp(argv[1], "topk") == 0) graph->topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
 	else usage();
 
 #ifdef _LINUX_
@@ -62,9 +64,9 @@ int main(int argc, char *argv[]) {
 	printf("Total time without IO: %lld microsecond, %lf millisecond, %lf second\n", mtime-mtime1, (float)(mtime-mtime1)/1000, (float)(mtime-mtime1)/1000000);
 #endif
 
-	if(argc > 6 && strcmp(argv[6], "output") == 0) graph->output(argv[3], argv[4], argv[5]);
+	if(argc > 7 && strcmp(argv[7], "output") == 0) graph->output(argv[3], argv[4], argv[5]);
 
-	if(argc > 7 && strcmp(argv[7], "cluster") == 0) graph->cluster_count(argv[3], argv[4], argv[5]);
+	if(argc > 8 && strcmp(argv[8], "cluster") == 0) graph->cluster_count(argv[3], argv[4], argv[5]);
 
 	return 0;
 }

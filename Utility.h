@@ -34,8 +34,9 @@ typedef unsigned int ui;
 #define pb push_back
 #define mp make_pair
 
-#define INF 9999
-#define EPSILON 1 + 1e-14
+#define INF 8e6
+#define EPSILON 1e-6
+#define MULTIPLICATIVE_EPSILON  1 + 1e-14
 
 #define _LINUX_
 //#define _DEBUG_
