@@ -1114,16 +1114,20 @@ void Graph::greedy_topk(const char *eps_s, int mu, int gamma, int k) {
 	useconds2 = end2.tv_usec - start.tv_usec;
 	mtime2 = seconds2*1000000 + useconds2;
 #endif
-	printf("Phase-I, %d GSGs\n", (int)cluster_sets.size());
+	printf("\t*** Phase-I, %d GSGs\n", (int)cluster_sets.size());
 
 	// top-k selection ... 
 	char *visited = new char[cluster_sets.size()];
 	memset(visited, 0, sizeof(char)*cluster_sets.size());
 
 	unordered_map<int, double> node_radius;					// <node, radius>
+	k = min(k, (int)cluster_sets.size());
+
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
 
 	double density_C = 0.0;									// union density(C)
-	for(int i = 0; i <= k; i++) {
+	for(int i = 0; i < k; i++) {
 		double density_max = 0.0;							// max(density(C&C'))
 		int ind_max = -1;
 		for(int j = 0; j < cluster_sets.size(); j++) {
@@ -1151,9 +1155,14 @@ void Graph::greedy_topk(const char *eps_s, int mu, int gamma, int k) {
 				ind_max = j;
 			}
 		}
+
 		if(ind_max == -1) break;
 		visited[ind_max] = 1;
 		density_C = density_max; 
+
+		rad_sum += cluster_sets[ind_max].second;
+		dia_sum += cluster_sets[ind_max].second*2;
+
 
 		// update the node_radius hashmap
 		for(int t = 0; t < cluster_sets[ind_max].first.size(); t++) {	
@@ -1170,7 +1179,9 @@ void Graph::greedy_topk(const char *eps_s, int mu, int gamma, int k) {
 	}
 
 	delete[] visited; visited = NULL;
-	printf("\t*** density_C = %.3lf \n", density_C);
+	// printf("\t*** density_C = %.3lf \n", density_C);
+	printf("\t*** k = %d, density_C = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_C, dia_sum/k, rad_sum/k);
+
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
 
@@ -1334,7 +1345,7 @@ void Graph::swap_topk(const char *eps_s, int mu, int gamma, int k) {
 	// Iterate each cluster with swapping replacement ... 	
 	vector<pair<int, double> > CK;							// <index in clusters, radius>
 	
-	double density_Ck = 0.0;								// union density(C)
+	double density_Ck = 0.0;								// union density(C) 
 
 	for(ui c = 0; c < n; c++) {
 		if(clusters[c].size() < mu) continue ;
@@ -1386,6 +1397,9 @@ void Graph::swap_topk(const char *eps_s, int mu, int gamma, int k) {
 		}
 	}
 
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
+	density_Ck = 0.0;
 	if(CK.size() <= k) {
 		unordered_map<int, double> node_radius;		// <node, radius>
 		for(int j = 0; j < CK.size(); j++) {
@@ -1402,10 +1416,16 @@ void Graph::swap_topk(const char *eps_s, int mu, int gamma, int k) {
 					node_radius.insert(mp(node, CK[j].second));			// update hashmap
 				}
 			}
+			dia_sum += CK[j].second*2;
+			rad_sum += CK[j].second;
 		}
-	}
 
-	printf("\t*** density_Ck= %.3lf \n", density_Ck);
+	}
+	k = min(k, (int)CK.size());
+
+	// printf("\t*** density_Ck= %.3lf \n", density_Ck);
+	printf("\t*** k = %d, density_Ck = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_Ck, dia_sum/k, rad_sum/k);
+
 
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
@@ -1583,15 +1603,19 @@ void Graph::topk(const char *eps_s, int mu, int gamma, int k) {
 	useconds2 = end2.tv_usec - start.tv_usec;
 	mtime2 = seconds2*1000000 + useconds2;
 #endif
-	printf("Phase-I, %d GSGs\n", (int)cluster_sets.size());
+	printf("\t*** Phase-I, %d GSGs\n", (int)cluster_sets.size());
 
 	// top-k selection ... 
 	char *visited = new char[cluster_sets.size()];
 	memset(visited, 0, sizeof(char)*cluster_sets.size());
 
 	unordered_map<int, double> node_radius;					// <node, radius>
+	k = min(k, (int)cluster_sets.size());
 
-	for(int i = 0; i <= k; i++) {
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
+
+	for(int i = 0; i < k; i++) {
 		double density_max = 0.0;							// max(density(C&C'))
 		int ind_max = -1;
 		for(int j = 0; j < cluster_sets.size(); j++) {
@@ -1603,6 +1627,8 @@ void Graph::topk(const char *eps_s, int mu, int gamma, int k) {
 				ind_max = j;
 			}
 		}
+		rad_sum += cluster_sets[ind_max].second;
+		dia_sum += cluster_sets[ind_max].second*2;
 
 		if(ind_max == -1) break;
 		visited[ind_max] = 1;
@@ -1628,7 +1654,8 @@ void Graph::topk(const char *eps_s, int mu, int gamma, int k) {
 		density_C += 1.0/(iter->second);
 	}
 
-	printf("\t*** density_C = %.3lf \n", density_C);
+	printf("\t*** k = %d, density_C = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_C, dia_sum/k, rad_sum/k);
+
 	
 #ifdef _LINUX_
 	gettimeofday(&end, NULL);
