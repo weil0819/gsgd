@@ -1132,6 +1132,7 @@ void Graph::greedy_topk(const char *eps_s, int mu, int gamma, int k) {
 		int ind_max = -1;
 		for(int j = 0; j < cluster_sets.size(); j++) {
 			if(visited[j]) continue ;
+			if((cluster_sets[j].second-0.0)<=EPSILON) continue;
 
 			double density_upper = (double)cluster_sets[j].first.size() / cluster_sets[j].second;	// upper bound 
 			if((density_max - (density_C + density_upper)) >= EPSILON) continue ;
@@ -1351,6 +1352,7 @@ void Graph::swap_topk(const char *eps_s, int mu, int gamma, int k) {
 		if(clusters[c].size() < mu) continue ;
 		
 		Circle C = make_mcc(clusters[c]);	
+		if((C.radius-0.0)<=EPSILON) continue;
 
 		if(CK.size() < k) CK.pb(mp(c, C.radius));
 		else {
@@ -1360,14 +1362,13 @@ void Graph::swap_topk(const char *eps_s, int mu, int gamma, int k) {
 			double density_k_best = 0.0;
 			int density_k_best_ind = -1;					// for future remove index in CK 
 
-			for(int i = 0; i < (k+1); i++) {		
-
+			for(int i = 0; i < (k+1); i++) {	
 				unordered_map<int, double> node_radius;		// <node, radius>
 				double density_k = 0.0;						// density of k candidates except i
 
 				for(int j = 0; j < (k+1); j++) {			// try to remove i
 					if(i == j) continue ;
-					for(int t = 0; t < clusters[CK[j].first].size(); t++) {		
+					for(int t = 0; t < clusters[CK[j].first].size(); t++) {								
 						int node = clusters[CK[j].first][t];
 						unordered_map<int,double>::const_iterator iter = node_radius.find(node);
 						if(iter != node_radius.end()) {
@@ -1620,18 +1621,22 @@ void Graph::topk(const char *eps_s, int mu, int gamma, int k) {
 		int ind_max = -1;
 		for(int j = 0; j < cluster_sets.size(); j++) {
 			if(visited[j]) continue ;
+			if((cluster_sets[j].second-0.0)<=EPSILON) continue;
 			double tmp = cluster_sets[j].first.size() / cluster_sets[j].second;
-			
+			// printf("j = %d, tmp = %.3lf, density_max = %.3lf\n", j, tmp, density_max);
 			if((tmp - density_max) > EPSILON) {
 				density_max = tmp;
 				ind_max = j;
 			}
 		}
+		// printf("ind_max = %d, density_max = %.3lf \n", ind_max, density_max);
+		if(ind_max == -1) break;
+		visited[ind_max] = 1;
+
 		rad_sum += cluster_sets[ind_max].second;
 		dia_sum += cluster_sets[ind_max].second*2;
 
-		if(ind_max == -1) break;
-		visited[ind_max] = 1;
+		// printf("density_max = %.3lf, radius = %.3lf \n", density_max, cluster_sets[ind_max].second);
 
 		// update the node_radius hashmap
 		for(int t = 0; t < cluster_sets[ind_max].first.size(); t++) {	
@@ -1669,6 +1674,449 @@ void Graph::topk(const char *eps_s, int mu, int gamma, int k) {
 #endif	
 }
 
+
+void Graph::evalVII(const char *eps_s, int mu, int gamma, int k) 
+{
+	// Get eps value ... 
+	int eps_a2 = 0, eps_b2 = 0;
+	get_eps(eps_s, eps_a2, eps_b2);
+	eps_a2 *= eps_a2;
+	eps_b2 *= eps_b2;
+
+#ifdef _LINUX_
+	struct timeval start, end1, end2, end;
+	gettimeofday(&start, NULL);
+#endif
+
+	// Cluster-Tric ... 
+	ui *deg = new ui[n];
+	for(ui i = 0;i < n;i ++) deg[i] = pstart[i+1]-pstart[i];
+
+	ui *adj = new ui[n];
+	memset(adj, 0, sizeof(ui)*n);
+
+	ui *similar = new ui[m];
+	memset(similar, 0, sizeof(ui)*m);
+
+	ui *pend = new ui[n];		
+
+	for(ui i = 0;i < n;i ++) { 
+
+		ui &end = pend[i] = pstart[i]; 
+
+		ui j = pstart[i+1]; 
+
+		while(true) {
+
+			while(end < j&&(deg[edges[end]] < deg[i]||(deg[edges[end]]==deg[i]&&edges[end]<i))) ++ end;
+
+			while(j > end&&(deg[edges[j-1]] > deg[i]||(deg[edges[j-1]]==deg[i]&&edges[j-1]>i))) -- j;
+
+			if(end >= j) break;
+
+			swap(edges[end], edges[j-1]);
+		}
+		sort(edges+pend[i], edges+pstart[i+1]);
+	}
+	
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = j+1;
+
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			for(ui k = pstart[v];k < pend[v];k ++) if(adj[edges[k]]) {
+				++ similar[j];		// edges[j]
+				++ similar[k];		// edges[k]
+				++ similar[adj[edges[k]] - 1];
+			}
+		}
+
+		for(ui j = pstart[u];j < pend[u];j ++) adj[edges[j]] = 0;
+	}
+
+	for(ui u = 0;u < n;u ++) {
+		for(ui j = pstart[u];j < pend[u];j ++) {
+			ui v = edges[j];
+
+			similar[j] += 2;
+
+			if(((long long)similar[j])*((long long)similar[j])*eps_b2 >= ((long long)(deg[u]+1))*((long long)(deg[v]+1))*eps_a2) similar[j] = 1;
+			else similar[j] = 0;
+
+			ui r_id = binary_search(edges+pend[v], pstart[v+1]-pend[v], u) + pend[v];
+			similar[r_id] = similar[j];
+		}
+	}
+
+	delete[] pend; pend = NULL;
+	delete[] deg; deg = NULL;
+	delete[] adj; adj = NULL;
+
+	if(similar_degree == NULL) similar_degree = new int[n];
+	memset(similar_degree, 0, sizeof(int)*n);
+
+	for(ui i = 0;i < n;i ++) for(ui j = pstart[i];j < pstart[i+1];j ++) {
+		if(similar[j] == 1) ++ similar_degree[i];
+	}
+
+	// Cluter core nodes ... 
+	if(pa == NULL) pa = new int[n];
+	if(rank == NULL) rank = new int[n];
+	for(ui i = 0;i < n;i ++) {
+		pa[i] = i;
+		rank[i] = 0;
+	}
+
+	for(ui i = 0;i < n;i ++) {
+		if(similar_degree[i] < mu) continue;
+
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] < mu) continue;		
+
+			if(similar[j] == 1) my_union(pa, rank, i, edges[j]);
+		}
+	}
+
+	if(cid == NULL) cid = new int[n];
+	for(ui i = 0;i < n;i ++) cid[i] = n;
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		int x = find_root(pa, i);
+		if(i < cid[x]) cid[x] = i;
+	}
+
+	// Cluster non-core nodes ... 
+	vector<pair<int,int> > noncore_cluster;
+	noncore_cluster.reserve(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		for(ui j = pstart[i];j < pstart[i+1];j ++) {
+			if(similar_degree[edges[j]] >= mu) continue;
+
+			if(similar[j] == 1) noncore_cluster.pb(mp(cid[pa[i]], edges[j]));
+		}
+	}
+
+	delete[] similar; similar = NULL;
+
+#ifdef _LINUX_
+	gettimeofday(&end1, NULL);
+
+	long long mtime1, seconds1, useconds1;
+	seconds1 = end1.tv_sec - start.tv_sec;
+	useconds1 = end1.tv_usec - start.tv_usec;
+	mtime1 = seconds1*1000000 + useconds1;
+#endif
+
+	// Collect a set of clusters ... 
+	vector<vector<int> > clusters(n);
+
+	for(ui i = 0;i < n;i ++) if(similar_degree[i] >= mu) {
+		clusters[cid[find_root(pa, i)]].pb(i);
+	}
+
+	sort(noncore_cluster.begin(), noncore_cluster.end());
+	noncore_cluster.erase(unique(noncore_cluster.begin(), noncore_cluster.end()), noncore_cluster.end());
+	for(ui i = 0;i < noncore_cluster.size();i ++) {
+		clusters[noncore_cluster[i].first].pb(noncore_cluster[i].second);
+	}
+
+
+
+	int flag = 0;
+	if(flag == 0) 
+	{
+		printf("For naive TOPK algorithm \n");
+	// Iterate each cluster ... 
+	vector<pair<vector<int>, double> > cluster_sets;
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < mu) continue ;
+		
+		Circle C = make_mcc(clusters[c]);	
+		cluster_sets.pb(mp(clusters[c],C.radius));
+	}
+
+#ifdef _LINUX_
+	gettimeofday(&end2, NULL);
+
+	long long mtime2, seconds2, useconds2;
+	seconds2 = end2.tv_sec - start.tv_sec;
+	useconds2 = end2.tv_usec - start.tv_usec;
+	mtime2 = seconds2*1000000 + useconds2;
+#endif
+	printf("\t*** Phase-I, %d GSGs\n", (int)cluster_sets.size());
+
+	// maive top-k selection ... 
+	char *visited = new char[cluster_sets.size()];
+	memset(visited, 0, sizeof(char)*cluster_sets.size());
+
+	unordered_map<int, double> node_radius;					// <node, radius>
+	k = min(k, (int)cluster_sets.size());
+
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
+
+	for(int i = 0; i < k; i++) {
+		double density_max = 0.0;							// max(density(C&C'))
+		int ind_max = -1;
+		for(int j = 0; j < cluster_sets.size(); j++) {
+			if(visited[j]) continue ;
+			if((cluster_sets[j].second-0.0)<=EPSILON) continue;
+			double tmp = cluster_sets[j].first.size() / cluster_sets[j].second;
+			// printf("j = %d, tmp = %.3lf, density_max = %.3lf\n", j, tmp, density_max);
+			if((tmp - density_max) > EPSILON) {
+				density_max = tmp;
+				ind_max = j;
+			}
+		}
+		// printf("ind_max = %d, density_max = %.3lf \n", ind_max, density_max);
+		if(ind_max == -1) break;
+		visited[ind_max] = 1;
+
+		rad_sum += cluster_sets[ind_max].second;
+		dia_sum += cluster_sets[ind_max].second*2;
+
+		// printf("density_max = %.3lf, radius = %.3lf \n", density_max, cluster_sets[ind_max].second);
+
+		// update the node_radius hashmap
+		for(int t = 0; t < cluster_sets[ind_max].first.size(); t++) {	
+			int node = cluster_sets[ind_max].first[t];
+			unordered_map<int,double>::const_iterator iter = node_radius.find(node);
+			if(iter != node_radius.end()) {
+				if(((*iter).second - cluster_sets[ind_max].second) > EPSILON) {
+					node_radius[node] = cluster_sets[ind_max].second;
+				}
+			}else {
+				node_radius.insert(mp(node, cluster_sets[ind_max].second));
+			}
+		}
+	}
+
+	delete[] visited; visited = NULL;
+
+	double density_C = 0.0;									// union density(C)
+	for(unordered_map<int,double>::const_iterator iter = node_radius.begin(); iter != node_radius.end(); ++iter) {
+		density_C += 1.0/(iter->second);
+	}
+	
+	printf("\t*** k = %d, density_C = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_C, dia_sum/k, rad_sum/k);
+
+	
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("\t*** Clustering time: %lld, MMC time: %lld, TopK time: %lld, TOPK time: %lld, Total time: %lld\n", mtime1, mtime2-mtime1, mtime-mtime2, mtime-mtime1, mtime);
+#endif
+	}
+	flag = 1;
+	if(flag == 1)
+	{
+		printf("For GREEDY algorithm \n");
+	// Iterate each cluster ... 
+	vector<pair<vector<int>, double> > cluster_sets;
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < mu) continue ;
+		
+		Circle C = make_mcc(clusters[c]);	
+		cluster_sets.pb(mp(clusters[c],C.radius));
+	}
+
+#ifdef _LINUX_
+	gettimeofday(&end2, NULL);
+
+	long long mtime2, seconds2, useconds2;
+	seconds2 = end2.tv_sec - start.tv_sec;
+	useconds2 = end2.tv_usec - start.tv_usec;
+	mtime2 = seconds2*1000000 + useconds2;
+#endif
+	printf("\t*** Phase-I, %d GSGs\n", (int)cluster_sets.size());
+
+	// greedy top-k selection ... 
+	char *visited = new char[cluster_sets.size()];
+	memset(visited, 0, sizeof(char)*cluster_sets.size());
+
+	unordered_map<int, double> node_radius;					// <node, radius>
+	k = min(k, (int)cluster_sets.size());
+
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
+
+	double density_C = 0.0;									// union density(C)
+	for(int i = 0; i < k; i++) {
+		double density_max = 0.0;							// max(density(C&C'))
+		int ind_max = -1;
+		for(int j = 0; j < cluster_sets.size(); j++) {
+			if(visited[j]) continue ;
+			if((cluster_sets[j].second-0.0)<=EPSILON) continue;
+
+			double density_upper = (double)cluster_sets[j].first.size() / cluster_sets[j].second;	// upper bound 
+			if((density_max - (density_C + density_upper)) >= EPSILON) continue ;
+
+			double tmp = density_C;
+			
+			for(int t = 0; t < cluster_sets[j].first.size(); t++) {									// compute the new density(C&C')
+				int node = cluster_sets[j].first[t];
+				unordered_map<int,double>::const_iterator iter = node_radius.find(node);
+				if(iter != node_radius.end()) {
+					if(((*iter).second - cluster_sets[j].second) > EPSILON) {
+						tmp = tmp - 1/(*iter).second + 1/cluster_sets[j].second;
+					}
+				}else {
+					tmp += 1/cluster_sets[j].second;
+				}
+			}
+						
+			if((tmp - density_max) > EPSILON) {
+				density_max = tmp;
+				ind_max = j;
+			}
+		}
+
+		if(ind_max == -1) break;
+		visited[ind_max] = 1;
+		density_C = density_max; 
+
+		rad_sum += cluster_sets[ind_max].second;
+		dia_sum += cluster_sets[ind_max].second*2;
+
+
+		// update the node_radius hashmap
+		for(int t = 0; t < cluster_sets[ind_max].first.size(); t++) {	
+			int node = cluster_sets[ind_max].first[t];
+			unordered_map<int,double>::const_iterator iter = node_radius.find(node);
+			if(iter != node_radius.end()) {
+				if(((*iter).second - cluster_sets[ind_max].second) > EPSILON) {
+					node_radius[node] = cluster_sets[ind_max].second;
+				}
+			}else {
+				node_radius.insert(mp(node, cluster_sets[ind_max].second));
+			}
+		}
+	}
+
+	delete[] visited; visited = NULL;
+	// printf("\t*** density_C = %.3lf \n", density_C);
+	
+	printf("\t*** k = %d, density_C = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_C, dia_sum/k, rad_sum/k);
+
+#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("\t*** Clustering time: %lld, MMC time: %lld, TopK time: %lld, Greedy time: %lld, Total time: %lld\n", mtime1, mtime2-mtime1, mtime-mtime2, mtime-mtime1, mtime);
+#endif
+	}
+	flag = 2;
+	if(flag == 2)
+	{
+		printf("For SWAP algorithm \n");
+	// Iterate each cluster with swapping replacement ... 	
+	vector<pair<int, double> > CK;							// <index in clusters, radius>
+	
+	double density_Ck = 0.0;								// union density(C) 
+
+	for(ui c = 0; c < n; c++) {
+		if(clusters[c].size() < mu) continue ;
+		
+		Circle C = make_mcc(clusters[c]);	
+		if((C.radius-0.0)<=EPSILON) continue;
+
+		if(CK.size() < k) CK.pb(mp(c, C.radius));
+		else {
+			CK.pb(mp(c, C.radius));
+
+			// pick one from k+1 candidates and drop it 
+			double density_k_best = 0.0;
+			int density_k_best_ind = -1;					// for future remove index in CK 
+
+			for(int i = 0; i < (k+1); i++) {	
+				unordered_map<int, double> node_radius;		// <node, radius>
+				double density_k = 0.0;						// density of k candidates except i
+
+				for(int j = 0; j < (k+1); j++) {			// try to remove i
+					if(i == j) continue ;
+					for(int t = 0; t < clusters[CK[j].first].size(); t++) {								
+						int node = clusters[CK[j].first][t];
+						unordered_map<int,double>::const_iterator iter = node_radius.find(node);
+						if(iter != node_radius.end()) {
+							if(((*iter).second - CK[j].second) > EPSILON) {
+								density_k = density_k - 1/(*iter).second + 1/CK[j].second;
+								node_radius[node] = CK[j].second;				// update hashmap
+							}
+						}else {
+							density_k += 1/CK[j].second; 
+							node_radius.insert(mp(node, CK[j].second));			// update hashmap
+						}
+					}
+				}
+
+				// update density_k_best 
+				if((density_k - density_k_best) > EPSILON) {
+					density_k_best = density_k;
+					density_k_best_ind = i;
+				}				
+			}
+
+			// update density_Ck and CK
+			if((density_k_best - (1+1/k)*density_Ck) > EPSILON) {
+				density_Ck = density_k_best;
+				CK.erase(CK.begin()+density_k_best_ind);
+			} else CK.pop_back();
+		}
+	}
+
+	// record diameter and radius of selected GSGs
+	double dia_sum = 0.0, rad_sum = 0.0;
+	density_Ck = 0.0;
+	if(CK.size() <= k) {
+		unordered_map<int, double> node_radius;		// <node, radius>
+		for(int j = 0; j < CK.size(); j++) {
+			for(int t = 0; t < clusters[CK[j].first].size(); t++) {		
+				int node = clusters[CK[j].first][t];
+				unordered_map<int,double>::const_iterator iter = node_radius.find(node);
+				if(iter != node_radius.end()) {
+					if(((*iter).second - CK[j].second) > EPSILON) {
+						density_Ck = density_Ck - 1/(*iter).second + 1/CK[j].second;
+						node_radius[node] = CK[j].second;				// update hashmap
+					}
+				}else {
+					density_Ck += 1/CK[j].second; 
+					node_radius.insert(mp(node, CK[j].second));			// update hashmap
+				}
+			}
+			dia_sum += CK[j].second*2;
+			rad_sum += CK[j].second;
+		}
+
+	}
+	k = min(k, (int)CK.size());
+
+	// printf("\t*** density_Ck= %.3lf \n", density_Ck);
+	
+	printf("\t*** k = %d, density_Ck = %.3lf, diameter_avg = %.3lf, radius_avg = %.3lf \n", k, density_Ck, dia_sum/k, rad_sum/k); 
+	#ifdef _LINUX_
+	gettimeofday(&end, NULL);
+
+	long long mtime, seconds, useconds;
+	seconds = end.tv_sec - start.tv_sec;
+	useconds = end.tv_usec - start.tv_usec;
+	mtime = seconds*1000000 + useconds;
+
+	printf("\t*** Clustering time: %lld, Swap TopK time: %lld, Total time: %lld\n", mtime1, mtime-mtime1, mtime);
+#endif
+	}
+
+}
 
 /*
 // long-time cost renew implementation (keep it as backup)

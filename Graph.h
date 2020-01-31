@@ -77,6 +77,9 @@ public:
 	// naive top-k
 	void topk(const char *eps_s, int mu, int gamma, int k) ;
 
+	// Eval-VII
+	void evalVII(const char *eps_s, int mu, int gamma, int k) ;
+
 
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu) ;
 	void cluster_noncore_vertices(int eps_a2, int eps_b2, int miu, unordered_set<int> &US) ;

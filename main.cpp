@@ -51,6 +51,7 @@ int main(int argc, char *argv[]) {
 	else if(strcmp(argv[1], "greedy") == 0) graph->greedy_topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6])); 
 	else if(strcmp(argv[1], "swap") == 0) graph->swap_topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
 	else if(strcmp(argv[1], "topk") == 0) graph->topk(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
+	else if(strcmp(argv[1], "evalVII") == 0) graph->evalVII(argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
 	else usage();
 
 #ifdef _LINUX_
