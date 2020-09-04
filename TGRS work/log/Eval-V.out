@@ -1,0 +1,816 @@
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 32215, MMC time: 16317, Total time: 48532
+Total time without IO: 48595 microsecond, 48.595001 millisecond, 0.048595 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 41254, MMC time: 17263, Total time: 58517
+Total time without IO: 58609 microsecond, 58.609001 millisecond, 0.058609 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 25456, MMC time: 15972, Total time: 41428
+Total time without IO: 41486 microsecond, 41.486000 millisecond, 0.041486 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 9 GSGs
+Clustering time: 27946, MMC time: 720, Total time: 28666
+Total time without IO: 28713 microsecond, 28.712999 millisecond, 0.028713 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 9 GSGs
+Clustering time: 25980, MMC time: 735, Total time: 26715
+Total time without IO: 26762 microsecond, 26.761999 millisecond, 0.026762 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 9 GSGs
+Clustering time: 28406, MMC time: 742, Total time: 29148
+Total time without IO: 29196 microsecond, 29.195999 millisecond, 0.029196 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 10246977 microsecond, 10246.976562 millisecond, 10.246977 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 10067138 microsecond, 10067.137695 millisecond, 10.067138 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 25, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 9883066 microsecond, 9883.066406 millisecond, 9.883066 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 72356, MMC time: 2557, Total time: 74913
+Total time without IO: 75096 microsecond, 75.096001 millisecond, 0.075096 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 74336, MMC time: 2647, Total time: 76983
+Total time without IO: 77160 microsecond, 77.160004 millisecond, 0.077160 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 78039, MMC time: 2660, Total time: 80699
+Total time without IO: 80877 microsecond, 80.876999 millisecond, 0.080877 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 48 GSGs
+Clustering time: 78889, MMC time: 1730, Total time: 80619
+Total time without IO: 80788 microsecond, 80.788002 millisecond, 0.080788 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 48 GSGs
+Clustering time: 78223, MMC time: 1700, Total time: 79923
+Total time without IO: 80074 microsecond, 80.073997 millisecond, 0.080074 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 48 GSGs
+Clustering time: 78090, MMC time: 1718, Total time: 79808
+Total time without IO: 79968 microsecond, 79.968002 millisecond, 0.079968 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 57698736 microsecond, 57698.734375 millisecond, 57.698734 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 56590491 microsecond, 56590.492188 millisecond, 56.590492 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 25, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 57137581 microsecond, 57137.578125 millisecond, 57.137581 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 9266, MMC time: 131, Total time: 9397
+Total time without IO: 9407 microsecond, 9.407000 millisecond, 0.009407 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8456, MMC time: 131, Total time: 8587
+Total time without IO: 8596 microsecond, 8.596000 millisecond, 0.008596 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8529, MMC time: 130, Total time: 8659
+Total time without IO: 8668 microsecond, 8.668000 millisecond, 0.008668 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8956, MMC time: 122, Total time: 9078
+Total time without IO: 9086 microsecond, 9.086000 millisecond, 0.009086 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8908, MMC time: 121, Total time: 9029
+Total time without IO: 9036 microsecond, 9.036000 millisecond, 0.009036 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 9449, MMC time: 123, Total time: 9572
+Total time without IO: 9580 microsecond, 9.580000 millisecond, 0.009580 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 590326 microsecond, 590.325989 millisecond, 0.590326 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 567270 microsecond, 567.270020 millisecond, 0.567270 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 25, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 667186 microsecond, 667.185974 millisecond, 0.667186 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 201291, MMC time: 1662, Total time: 202953
+Total time without IO: 203112 microsecond, 203.112000 millisecond, 0.203112 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 202210, MMC time: 1913, Total time: 204123
+Total time without IO: 204278 microsecond, 204.278000 millisecond, 0.204278 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 175676, MMC time: 1650, Total time: 177326
+Total time without IO: 177469 microsecond, 177.468994 millisecond, 0.177469 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 192050, MMC time: 1669, Total time: 193719
+Total time without IO: 193862 microsecond, 193.862000 millisecond, 0.193862 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 203190, MMC time: 1630, Total time: 204820
+Total time without IO: 204964 microsecond, 204.964005 millisecond, 0.204964 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 198396, MMC time: 1600, Total time: 199996
+Total time without IO: 200153 microsecond, 200.153000 millisecond, 0.200153 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 59329093 microsecond, 59329.093750 millisecond, 59.329090 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 55224078 microsecond, 55224.078125 millisecond, 55.224079 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 25, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 59798354 microsecond, 59798.351562 millisecond, 59.798351 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 28779, MMC time: 17542, Total time: 46321
+Total time without IO: 46415 microsecond, 46.415001 millisecond, 0.046415 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 27587, MMC time: 15891, Total time: 43478
+Total time without IO: 43580 microsecond, 43.580002 millisecond, 0.043580 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 25869, MMC time: 16074, Total time: 41943
+Total time without IO: 42028 microsecond, 42.028000 millisecond, 0.042028 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 11 GSGs
+Clustering time: 27810, MMC time: 738, Total time: 28548
+Total time without IO: 28606 microsecond, 28.606001 millisecond, 0.028606 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 11 GSGs
+Clustering time: 27356, MMC time: 822, Total time: 28178
+Total time without IO: 28234 microsecond, 28.233999 millisecond, 0.028234 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 11 GSGs
+Clustering time: 29137, MMC time: 840, Total time: 29977
+Total time without IO: 30055 microsecond, 30.055000 millisecond, 0.030055 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11382226 microsecond, 11382.225586 millisecond, 11.382226 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11312502 microsecond, 11312.501953 millisecond, 11.312502 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 50, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11400663 microsecond, 11400.663086 millisecond, 11.400663 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 85052, MMC time: 2905, Total time: 87957
+Total time without IO: 88151 microsecond, 88.151001 millisecond, 0.088151 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 75922, MMC time: 2849, Total time: 78771
+Total time without IO: 78933 microsecond, 78.932999 millisecond, 0.078933 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 75104, MMC time: 2777, Total time: 77881
+Total time without IO: 78035 microsecond, 78.035004 millisecond, 0.078035 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 49 GSGs
+Clustering time: 76850, MMC time: 1756, Total time: 78606
+Total time without IO: 78762 microsecond, 78.762001 millisecond, 0.078762 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 49 GSGs
+Clustering time: 76067, MMC time: 1748, Total time: 77815
+Total time without IO: 77986 microsecond, 77.986000 millisecond, 0.077986 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 49 GSGs
+Clustering time: 75559, MMC time: 1743, Total time: 77302
+Total time without IO: 77459 microsecond, 77.459000 millisecond, 0.077459 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 63672738 microsecond, 63672.734375 millisecond, 63.672737 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 63388115 microsecond, 63388.117188 millisecond, 63.388115 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 50, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 62320286 microsecond, 62320.289062 millisecond, 62.320290 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8676, MMC time: 130, Total time: 8806
+Total time without IO: 8816 microsecond, 8.816000 millisecond, 0.008816 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8721, MMC time: 130, Total time: 8851
+Total time without IO: 8859 microsecond, 8.859000 millisecond, 0.008859 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8627, MMC time: 130, Total time: 8757
+Total time without IO: 8766 microsecond, 8.766000 millisecond, 0.008766 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 9042, MMC time: 123, Total time: 9165
+Total time without IO: 9173 microsecond, 9.173000 millisecond, 0.009173 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 13191, MMC time: 122, Total time: 13313
+Total time without IO: 13322 microsecond, 13.322000 millisecond, 0.013322 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 9824, MMC time: 124, Total time: 9948
+Total time without IO: 9956 microsecond, 9.956000 millisecond, 0.009956 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 1692408 microsecond, 1692.407959 millisecond, 1.692408 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 1508941 microsecond, 1508.941040 millisecond, 1.508941 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 50, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 1591911 microsecond, 1591.911011 millisecond, 1.591911 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 213525, MMC time: 1723, Total time: 215248
+Total time without IO: 215433 microsecond, 215.432999 millisecond, 0.215433 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 171788, MMC time: 1654, Total time: 173442
+Total time without IO: 173584 microsecond, 173.584000 millisecond, 0.173584 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 171360, MMC time: 1609, Total time: 172969
+Total time without IO: 173110 microsecond, 173.110001 millisecond, 0.173110 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 187350, MMC time: 1768, Total time: 189118
+Total time without IO: 189269 microsecond, 189.268997 millisecond, 0.189269 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 198789, MMC time: 1561, Total time: 200350
+Total time without IO: 200490 microsecond, 200.490005 millisecond, 0.200490 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 206773, MMC time: 1715, Total time: 208488
+Total time without IO: 208635 microsecond, 208.634995 millisecond, 0.208635 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 139119826 microsecond, 139119.828125 millisecond, 139.119827 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 139762630 microsecond, 139762.625000 millisecond, 139.762619 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 50, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 140574647 microsecond, 140574.640625 millisecond, 140.574646 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 40681, MMC time: 39170, Total time: 79851
+Total time without IO: 79964 microsecond, 79.963997 millisecond, 0.079964 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 36393, MMC time: 35882, Total time: 72275
+Total time without IO: 72391 microsecond, 72.390999 millisecond, 0.072391 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 26539, MMC time: 34093, Total time: 60632
+Total time without IO: 60722 microsecond, 60.722000 millisecond, 0.060722 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 16 GSGs
+Clustering time: 27387, MMC time: 801, Total time: 28188
+Total time without IO: 28234 microsecond, 28.233999 millisecond, 0.028234 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 16 GSGs
+Clustering time: 26300, MMC time: 789, Total time: 27089
+Total time without IO: 27139 microsecond, 27.139000 millisecond, 0.027139 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 16 GSGs
+Clustering time: 35672, MMC time: 2000, Total time: 37672
+Total time without IO: 37941 microsecond, 37.941002 millisecond, 0.037941 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11167678 microsecond, 11167.677734 millisecond, 11.167678 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 10858521 microsecond, 10858.521484 millisecond, 10.858521 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 75, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11068811 microsecond, 11068.810547 millisecond, 11.068811 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 79667, MMC time: 3767, Total time: 83434
+Total time without IO: 83612 microsecond, 83.612000 millisecond, 0.083612 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 75707, MMC time: 3625, Total time: 79332
+Total time without IO: 79584 microsecond, 79.584000 millisecond, 0.079584 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 139336, MMC time: 5651, Total time: 144987
+Total time without IO: 145190 microsecond, 145.190002 millisecond, 0.145190 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 51 GSGs
+Clustering time: 90925, MMC time: 3012, Total time: 93937
+Total time without IO: 94272 microsecond, 94.272003 millisecond, 0.094272 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 51 GSGs
+Clustering time: 93677, MMC time: 3052, Total time: 96729
+Total time without IO: 97367 microsecond, 97.366997 millisecond, 0.097367 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 51 GSGs
+Clustering time: 85325, MMC time: 1794, Total time: 87119
+Total time without IO: 87302 microsecond, 87.302002 millisecond, 0.087302 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 59212777 microsecond, 59212.777344 millisecond, 59.212776 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 61682309 microsecond, 61682.308594 millisecond, 61.682308 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 75, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 59398667 microsecond, 59398.667969 millisecond, 59.398666 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8384, MMC time: 129, Total time: 8513
+Total time without IO: 8522 microsecond, 8.522000 millisecond, 0.008522 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8394, MMC time: 129, Total time: 8523
+Total time without IO: 8532 microsecond, 8.532000 millisecond, 0.008532 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8398, MMC time: 130, Total time: 8528
+Total time without IO: 8537 microsecond, 8.537000 millisecond, 0.008537 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8911, MMC time: 123, Total time: 9034
+Total time without IO: 9040 microsecond, 9.040000 millisecond, 0.009040 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8857, MMC time: 122, Total time: 8979
+Total time without IO: 8987 microsecond, 8.987000 millisecond, 0.008987 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 9141, MMC time: 164, Total time: 9305
+Total time without IO: 9318 microsecond, 9.318000 millisecond, 0.009318 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2222428 microsecond, 2222.427979 millisecond, 2.222428 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2218782 microsecond, 2218.781982 millisecond, 2.218782 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 75, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2245860 microsecond, 2245.860107 millisecond, 2.245860 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 177272, MMC time: 1645, Total time: 178917
+Total time without IO: 179059 microsecond, 179.059006 millisecond, 0.179059 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 159961, MMC time: 1570, Total time: 161531
+Total time without IO: 161668 microsecond, 161.667999 millisecond, 0.161668 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 173339, MMC time: 1912, Total time: 175251
+Total time without IO: 175512 microsecond, 175.511993 millisecond, 0.175512 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 235205, MMC time: 1620, Total time: 236825
+Total time without IO: 236988 microsecond, 236.988007 millisecond, 0.236988 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 220462, MMC time: 2727, Total time: 223189
+Total time without IO: 223977 microsecond, 223.977005 millisecond, 0.223977 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 179335, MMC time: 1495, Total time: 180830
+Total time without IO: 180965 microsecond, 180.964996 millisecond, 0.180965 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 207632606 microsecond, 207632.609375 millisecond, 207.632614 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 258801957 microsecond, 258801.953125 millisecond, 258.801941 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 75, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 254086920 microsecond, 254086.906250 millisecond, 254.086914 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 25398, MMC time: 35834, Total time: 61232
+Total time without IO: 61323 microsecond, 61.323002 millisecond, 0.061323 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 25675, MMC time: 38055, Total time: 63730
+Total time without IO: 63905 microsecond, 63.904999 millisecond, 0.063905 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Clustering time: 26900, MMC time: 33529, Total time: 60429
+Total time without IO: 60505 microsecond, 60.505001 millisecond, 0.060505 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 17 GSGs
+Clustering time: 28347, MMC time: 755, Total time: 29102
+Total time without IO: 29150 microsecond, 29.150000 millisecond, 0.029150 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 17 GSGs
+Clustering time: 33429, MMC time: 841, Total time: 34270
+Total time without IO: 34335 microsecond, 34.334999 millisecond, 0.034335 second
+**** Geo-Social Group Detection (Release): random, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Finally, 17 clusters, and 17 GSGs
+Clustering time: 26360, MMC time: 791, Total time: 27151
+Total time without IO: 27206 microsecond, 27.205999 millisecond, 0.027206 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11145982 microsecond, 11145.982422 millisecond, 11.145982 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 11611116 microsecond, 11611.116211 millisecond, 11.611116 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Brightkite, 0.6, 10, 100, (null) *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+Total time without IO: 12322634 microsecond, 12322.633789 millisecond, 12.322634 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 70208, MMC time: 3416, Total time: 73624
+Total time without IO: 73776 microsecond, 73.776001 millisecond, 0.073776 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 74527, MMC time: 3476, Total time: 78003
+Total time without IO: 78160 microsecond, 78.160004 millisecond, 0.078160 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Clustering time: 71911, MMC time: 3404, Total time: 75315
+Total time without IO: 75464 microsecond, 75.463997 millisecond, 0.075464 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 52 GSGs
+Clustering time: 72834, MMC time: 1687, Total time: 74521
+Total time without IO: 74676 microsecond, 74.676003 millisecond, 0.074676 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 52 GSGs
+Clustering time: 74016, MMC time: 2418, Total time: 76434
+Total time without IO: 76652 microsecond, 76.652000 millisecond, 0.076652 second
+**** Geo-Social Group Detection (Release): random, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Finally, 54 clusters, and 52 GSGs
+Clustering time: 78603, MMC time: 1703, Total time: 80306
+Total time without IO: 80465 microsecond, 80.464996 millisecond, 0.080465 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 61583048 microsecond, 61583.046875 millisecond, 61.583050 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 58595573 microsecond, 58595.570312 millisecond, 58.595573 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Gowalla, 0.6, 10, 100, (null) *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+Total time without IO: 58854872 microsecond, 58854.871094 millisecond, 58.854874 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8384, MMC time: 131, Total time: 8515
+Total time without IO: 8524 microsecond, 8.524000 millisecond, 0.008524 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8423, MMC time: 130, Total time: 8553
+Total time without IO: 8562 microsecond, 8.562000 millisecond, 0.008562 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Clustering time: 8417, MMC time: 130, Total time: 8547
+Total time without IO: 8556 microsecond, 8.556000 millisecond, 0.008556 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8848, MMC time: 121, Total time: 8969
+Total time without IO: 8977 microsecond, 8.977000 millisecond, 0.008977 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 8960, MMC time: 191, Total time: 9151
+Total time without IO: 9162 microsecond, 9.162000 millisecond, 0.009162 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 9125, MMC time: 124, Total time: 9249
+Total time without IO: 9257 microsecond, 9.257000 millisecond, 0.009257 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2612254 microsecond, 2612.253906 millisecond, 2.612254 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2608102 microsecond, 2608.102051 millisecond, 2.608102 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn1, 0.6, 10, 100, (null) *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+Total time without IO: 2578270 microsecond, 2578.270020 millisecond, 2.578270 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 153876, MMC time: 1603, Total time: 155479
+Total time without IO: 155621 microsecond, 155.621002 millisecond, 0.155621 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 159764, MMC time: 1642, Total time: 161406
+Total time without IO: 161562 microsecond, 161.561996 millisecond, 0.161562 second
+**** Geo-Social Group Detection (Release): naive, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Clustering time: 166460, MMC time: 1711, Total time: 168171
+Total time without IO: 168310 microsecond, 168.309998 millisecond, 0.168310 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 170248, MMC time: 1590, Total time: 171838
+Total time without IO: 171980 microsecond, 171.979996 millisecond, 0.171980 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 174390, MMC time: 1544, Total time: 175934
+Total time without IO: 176072 microsecond, 176.072006 millisecond, 0.176072 second
+**** Geo-Social Group Detection (Release): random, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Finally, 0 clusters, and 0 GSGs
+Clustering time: 165607, MMC time: 1531, Total time: 167138
+Total time without IO: 167280 microsecond, 167.279999 millisecond, 0.167280 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 384933904 microsecond, 384933.875000 millisecond, 384.933899 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 252938866 microsecond, 252938.859375 millisecond, 252.938858 second
+**** Geo-Social Group Detection (Release): gdcd, ../../data/Syn2, 0.6, 10, 100, (null) *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+Total time without IO: 259003784 microsecond, 259003.781250 millisecond, 259.003784 second
+*********************************************************************************

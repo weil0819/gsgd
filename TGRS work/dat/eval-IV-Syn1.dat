@@ -1,0 +1,7 @@
+### Starting with gamma=50, eps=0.6 varying mu=5, 10, 15, 20 ###
+#mu Naive	Random	DGCD
+1	8804	9115	1427249
+2	8519	9107	1377223
+3	8513	9092	1379364
+4	8499	8994	1377696
+###Ending###

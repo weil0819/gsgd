@@ -1,0 +1,2 @@
+g++ -o Preprocess Preprocess.cpp ../Utility.cpp -std=c++11 
+g++ -o Synprep Synprep.cpp ../Utility.cpp -std=c++11

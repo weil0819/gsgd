@@ -1,0 +1,7 @@
+### Starting with mu=10, eps=0.6 varying gamma=25, 50, 75, 100 ###
+#gamma Naive	Random	DGCD
+1	8890	9234	608260
+2	8813	9564	1597753
+3	8530	9115	2229023
+4	8547	9132	2599542
+###Ending###

@@ -1,0 +1,8 @@
+### Split time of CLUSTER and MCC ###
+### Starting with eps=0.6, mu=10, varying gamma=25~100 ###
+# gamma Cluster Naive	Random
+1	8381	133	123
+2	8494	128	120	
+3	8432	134	123	
+4	8417	144	120	
+###Ending###

@@ -1,0 +1,8 @@
+### Split time of Greedy and Swap ###
+### Starting with gamma=50, eps=0.6, mu=5, varying k=10, 50 ###
+### Phase-I	Greedy	Swap ###
+Brightkite	27468	1990	25132	25280	1739	381255
+Gowalla		70150	4277	82820	75049	4576	1947166
+Syn1		8314	388		3624	8314	493		667
+Syn2		161444	3822	47004	161168	4025	1042678
+###Ending###

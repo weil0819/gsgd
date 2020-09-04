@@ -1,0 +1,1320 @@
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 30686, MMC time: 1052, TopK time: 73, Total time: 31811
+Total time without IO: 31884 microsecond, 31.884001 millisecond, 0.031884 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 25906, MMC time: 985, TopK time: 73, Total time: 26964
+Total time without IO: 27025 microsecond, 27.025000 millisecond, 0.027025 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 31814, MMC time: 1135, TopK time: 86, Total time: 33035
+Total time without IO: 33129 microsecond, 33.129002 millisecond, 0.033129 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 25722, TopK time: 19217, Total time: 44939
+Total time without IO: 45076 microsecond, 45.076000 millisecond, 0.045076 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 25386, TopK time: 19014, Total time: 44400
+Total time without IO: 44460 microsecond, 44.459999 millisecond, 0.044460 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 25535, TopK time: 19005, Total time: 44540
+Total time without IO: 44623 microsecond, 44.623001 millisecond, 0.044623 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 26200, MMC time: 978, TopK time: 26, Total time: 27204
+Total time without IO: 27263 microsecond, 27.263000 millisecond, 0.027263 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 26567, MMC time: 970, TopK time: 27, Total time: 27564
+Total time without IO: 27625 microsecond, 27.625000 millisecond, 0.027625 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 10 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 10, density_C = 1327.885, diameter_avg = 0.242, radius_avg = 0.121 
+Clustering time: 30549, MMC time: 1589, TopK time: 40, Total time: 32178
+Total time without IO: 32499 microsecond, 32.499001 millisecond, 0.032499 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 73440, MMC time: 2861, TopK time: 60, Total time: 76361
+Total time without IO: 76562 microsecond, 76.561996 millisecond, 0.076562 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 71105, MMC time: 2847, TopK time: 61, Total time: 74013
+Total time without IO: 74211 microsecond, 74.210999 millisecond, 0.074211 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 71447, MMC time: 2817, TopK time: 60, Total time: 74324
+Total time without IO: 74520 microsecond, 74.519997 millisecond, 0.074520 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 70413, TopK time: 64961, Total time: 135374
+Total time without IO: 135622 microsecond, 135.621994 millisecond, 0.135622 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 71475, TopK time: 67625, Total time: 139100
+Total time without IO: 139324 microsecond, 139.324005 millisecond, 0.139324 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 116385, TopK time: 64651, Total time: 181036
+Total time without IO: 181284 microsecond, 181.283997 millisecond, 0.181284 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 84883, MMC time: 3070, TopK time: 47, Total time: 88000
+Total time without IO: 88218 microsecond, 88.218002 millisecond, 0.088218 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 79128, MMC time: 3680, TopK time: 47, Total time: 82855
+Total time without IO: 83081 microsecond, 83.081001 millisecond, 0.083081 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 10 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 10, density_C = 5037.192, diameter_avg = 0.051, radius_avg = 0.025 
+Clustering time: 71664, MMC time: 2821, TopK time: 46, Total time: 74531
+Total time without IO: 74728 microsecond, 74.727997 millisecond, 0.074728 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 9110, MMC time: 241, TopK time: 28, Total time: 9379
+Total time without IO: 9393 microsecond, 9.393000 millisecond, 0.009393 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 8616, MMC time: 262, TopK time: 28, Total time: 8906
+Total time without IO: 8919 microsecond, 8.919000 millisecond, 0.008919 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 8653, MMC time: 235, TopK time: 28, Total time: 8916
+Total time without IO: 8929 microsecond, 8.929000 millisecond, 0.008929 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 8457, TopK time: 2737, Total time: 11194
+Total time without IO: 11206 microsecond, 11.206000 millisecond, 0.011206 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 8426, TopK time: 2849, Total time: 11275
+Total time without IO: 11287 microsecond, 11.287000 millisecond, 0.011287 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 8765, TopK time: 2687, Total time: 11452
+Total time without IO: 11465 microsecond, 11.465000 millisecond, 0.011465 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 9061, MMC time: 245, TopK time: 23, Total time: 9329
+Total time without IO: 9343 microsecond, 9.343000 millisecond, 0.009343 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 9344, MMC time: 258, TopK time: 24, Total time: 9626
+Total time without IO: 9640 microsecond, 9.640000 millisecond, 0.009640 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 10 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 10, density_C = 2.145, diameter_avg = 70.055, radius_avg = 35.028 
+Clustering time: 9161, MMC time: 246, TopK time: 24, Total time: 9431
+Total time without IO: 9446 microsecond, 9.446000 millisecond, 0.009446 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 233172, MMC time: 2880, TopK time: 52, Total time: 236104
+Total time without IO: 236292 microsecond, 236.292007 millisecond, 0.236292 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 195960, MMC time: 2972, TopK time: 51, Total time: 198983
+Total time without IO: 199194 microsecond, 199.194000 millisecond, 0.199194 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 174281, MMC time: 2783, TopK time: 51, Total time: 177115
+Total time without IO: 177309 microsecond, 177.309006 millisecond, 0.177309 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 157936, TopK time: 40307, Total time: 198243
+Total time without IO: 198463 microsecond, 198.462997 millisecond, 0.198463 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 159535, TopK time: 36780, Total time: 196315
+Total time without IO: 196527 microsecond, 196.526993 millisecond, 0.196527 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 10, density_Ck = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 198766, TopK time: 37429, Total time: 236195
+Total time without IO: 236505 microsecond, 236.505005 millisecond, 0.236505 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 161940, MMC time: 2622, TopK time: 41, Total time: 164603
+Total time without IO: 164766 microsecond, 164.766006 millisecond, 0.164766 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 154856, MMC time: 2619, TopK time: 41, Total time: 157516
+Total time without IO: 157677 microsecond, 157.677002 millisecond, 0.157677 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 10 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 10, density_C = 2.775, diameter_avg = 62.827, radius_avg = 31.413 
+Clustering time: 166206, MMC time: 2944, TopK time: 44, Total time: 169194
+Total time without IO: 169367 microsecond, 169.367004 millisecond, 0.169367 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 25846, MMC time: 988, TopK time: 133, Total time: 26967
+Total time without IO: 27046 microsecond, 27.046000 millisecond, 0.027046 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 26191, MMC time: 978, TopK time: 133, Total time: 27302
+Total time without IO: 27372 microsecond, 27.372000 millisecond, 0.027372 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 26279, MMC time: 984, TopK time: 132, Total time: 27395
+Total time without IO: 27459 microsecond, 27.459000 millisecond, 0.027459 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 25605, TopK time: 71620, Total time: 97225
+Total time without IO: 97329 microsecond, 97.329002 millisecond, 0.097329 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 25530, TopK time: 70415, Total time: 95945
+Total time without IO: 96030 microsecond, 96.029999 millisecond, 0.096030 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 25544, TopK time: 77917, Total time: 103461
+Total time without IO: 103602 microsecond, 103.601997 millisecond, 0.103602 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 26263, MMC time: 1009, TopK time: 41, Total time: 27313
+Total time without IO: 27383 microsecond, 27.382999 millisecond, 0.027383 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 26817, MMC time: 999, TopK time: 42, Total time: 27858
+Total time without IO: 27931 microsecond, 27.931000 millisecond, 0.027931 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 20 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 20, density_C = 1576.928, diameter_avg = 0.472, radius_avg = 0.236 
+Clustering time: 26062, MMC time: 977, TopK time: 41, Total time: 27080
+Total time without IO: 27136 microsecond, 27.136000 millisecond, 0.027136 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 71313, MMC time: 2811, TopK time: 151, Total time: 74275
+Total time without IO: 74481 microsecond, 74.481003 millisecond, 0.074481 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 74907, MMC time: 2883, TopK time: 116, Total time: 77906
+Total time without IO: 78114 microsecond, 78.113998 millisecond, 0.078114 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 72190, MMC time: 4330, TopK time: 156, Total time: 76676
+Total time without IO: 76910 microsecond, 76.910004 millisecond, 0.076910 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 70792, TopK time: 319851, Total time: 390643
+Total time without IO: 390848 microsecond, 390.847992 millisecond, 0.390848 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 70131, TopK time: 322268, Total time: 392399
+Total time without IO: 392623 microsecond, 392.622986 millisecond, 0.392623 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 70564, TopK time: 362275, Total time: 432839
+Total time without IO: 433627 microsecond, 433.627014 millisecond, 0.433627 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 71854, MMC time: 2800, TopK time: 79, Total time: 74733
+Total time without IO: 74931 microsecond, 74.931000 millisecond, 0.074931 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 71498, MMC time: 3096, TopK time: 80, Total time: 74674
+Total time without IO: 74891 microsecond, 74.890999 millisecond, 0.074891 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 20 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 20, density_C = 6818.446, diameter_avg = 0.077, radius_avg = 0.038 
+Clustering time: 99905, MMC time: 5440, TopK time: 117, Total time: 105462
+Total time without IO: 106153 microsecond, 106.153000 millisecond, 0.106153 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 8943, MMC time: 257, TopK time: 52, Total time: 9252
+Total time without IO: 9268 microsecond, 9.268000 millisecond, 0.009268 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 12129, MMC time: 373, TopK time: 93, Total time: 12595
+Total time without IO: 12621 microsecond, 12.621000 millisecond, 0.012621 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 14944, MMC time: 437, TopK time: 95, Total time: 15476
+Total time without IO: 15507 microsecond, 15.507000 millisecond, 0.015507 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 13331, TopK time: 7707, Total time: 21038
+Total time without IO: 21055 microsecond, 21.055000 millisecond, 0.021055 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 8632, TopK time: 7577, Total time: 16209
+Total time without IO: 16220 microsecond, 16.219999 millisecond, 0.016220 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 8416, TopK time: 7511, Total time: 15927
+Total time without IO: 15940 microsecond, 15.940000 millisecond, 0.015940 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 9038, MMC time: 250, TopK time: 34, Total time: 9322
+Total time without IO: 9337 microsecond, 9.337000 millisecond, 0.009337 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 9076, MMC time: 252, TopK time: 34, Total time: 9362
+Total time without IO: 9379 microsecond, 9.379000 millisecond, 0.009379 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 20 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 20, density_C = 3.927, diameter_avg = 77.410, radius_avg = 38.705 
+Clustering time: 9069, MMC time: 248, TopK time: 34, Total time: 9351
+Total time without IO: 9368 microsecond, 9.368000 millisecond, 0.009368 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 220994, MMC time: 3066, TopK time: 104, Total time: 224164
+Total time without IO: 224362 microsecond, 224.362000 millisecond, 0.224362 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 235384, MMC time: 5183, TopK time: 120, Total time: 240687
+Total time without IO: 240941 microsecond, 240.940994 millisecond, 0.240941 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 195708, MMC time: 2699, TopK time: 91, Total time: 198498
+Total time without IO: 198680 microsecond, 198.679993 millisecond, 0.198680 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 153962, TopK time: 163034, Total time: 316996
+Total time without IO: 317188 microsecond, 317.187988 millisecond, 0.317188 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 156032, TopK time: 154863, Total time: 310895
+Total time without IO: 311085 microsecond, 311.084991 millisecond, 0.311085 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 20, density_Ck = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 149855, TopK time: 155582, Total time: 305437
+Total time without IO: 305619 microsecond, 305.618988 millisecond, 0.305619 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 153222, MMC time: 2621, TopK time: 71, Total time: 155914
+Total time without IO: 156086 microsecond, 156.085999 millisecond, 0.156086 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 156062, MMC time: 2641, TopK time: 86, Total time: 158789
+Total time without IO: 158961 microsecond, 158.960999 millisecond, 0.158961 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 20 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 20, density_C = 5.251, diameter_avg = 65.801, radius_avg = 32.901 
+Clustering time: 154045, MMC time: 2585, TopK time: 71, Total time: 156701
+Total time without IO: 156877 microsecond, 156.876999 millisecond, 0.156877 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25797, MMC time: 985, TopK time: 192, Total time: 26974
+Total time without IO: 27041 microsecond, 27.041000 millisecond, 0.027041 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25887, MMC time: 1051, TopK time: 201, Total time: 27139
+Total time without IO: 27230 microsecond, 27.230000 millisecond, 0.027230 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25963, MMC time: 964, TopK time: 191, Total time: 27118
+Total time without IO: 27179 microsecond, 27.179001 millisecond, 0.027179 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25480, TopK time: 146774, Total time: 172254
+Total time without IO: 172353 microsecond, 172.352997 millisecond, 0.172353 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25321, TopK time: 147626, Total time: 172947
+Total time without IO: 173050 microsecond, 173.050003 millisecond, 0.173050 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25647, TopK time: 146711, Total time: 172358
+Total time without IO: 172455 microsecond, 172.455002 millisecond, 0.172455 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 25912, MMC time: 996, TopK time: 61, Total time: 26969
+Total time without IO: 27040 microsecond, 27.040001 millisecond, 0.027040 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 26265, MMC time: 990, TopK time: 61, Total time: 27316
+Total time without IO: 27383 microsecond, 27.382999 millisecond, 0.027383 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 30 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 30, density_C = 1672.817, diameter_avg = 1.206, radius_avg = 0.603 
+Clustering time: 27078, MMC time: 978, TopK time: 62, Total time: 28118
+Total time without IO: 28185 microsecond, 28.184999 millisecond, 0.028185 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 71348, MMC time: 2825, TopK time: 165, Total time: 74338
+Total time without IO: 74545 microsecond, 74.544998 millisecond, 0.074545 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 76393, MMC time: 3348, TopK time: 168, Total time: 79909
+Total time without IO: 80146 microsecond, 80.146004 millisecond, 0.080146 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 75555, MMC time: 2921, TopK time: 166, Total time: 78642
+Total time without IO: 78852 microsecond, 78.851997 millisecond, 0.078852 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 72158, TopK time: 672026, Total time: 744184
+Total time without IO: 744412 microsecond, 744.411987 millisecond, 0.744412 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 76821, TopK time: 688618, Total time: 765439
+Total time without IO: 765672 microsecond, 765.671997 millisecond, 0.765672 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 70762, TopK time: 725797, Total time: 796559
+Total time without IO: 796777 microsecond, 796.776978 millisecond, 0.796777 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 140453, MMC time: 4389, TopK time: 179, Total time: 145021
+Total time without IO: 145357 microsecond, 145.356995 millisecond, 0.145357 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 194867, MMC time: 3325, TopK time: 202, Total time: 198394
+Total time without IO: 199169 microsecond, 199.169006 millisecond, 0.199169 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 30 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 30, density_C = 7999.125, diameter_avg = 0.100, radius_avg = 0.050 
+Clustering time: 152955, MMC time: 3070, TopK time: 118, Total time: 156143
+Total time without IO: 156528 microsecond, 156.528000 millisecond, 0.156528 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 13230, MMC time: 360, TopK time: 89, Total time: 13679
+Total time without IO: 13708 microsecond, 13.708000 millisecond, 0.013708 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 13816, MMC time: 361, TopK time: 94, Total time: 14271
+Total time without IO: 14305 microsecond, 14.305000 millisecond, 0.014305 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 31532, MMC time: 403, TopK time: 103, Total time: 32038
+Total time without IO: 32073 microsecond, 32.073002 millisecond, 0.032073 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 30802, TopK time: 16668, Total time: 47470
+Total time without IO: 47486 microsecond, 47.486000 millisecond, 0.047486 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 12076, TopK time: 11998, Total time: 24074
+Total time without IO: 24090 microsecond, 24.090000 millisecond, 0.024090 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 9261, TopK time: 17838, Total time: 27099
+Total time without IO: 27123 microsecond, 27.122999 millisecond, 0.027123 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 13799, MMC time: 385, TopK time: 76, Total time: 14260
+Total time without IO: 14293 microsecond, 14.293000 millisecond, 0.014293 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 27144, MMC time: 381, TopK time: 75, Total time: 27600
+Total time without IO: 27634 microsecond, 27.634001 millisecond, 0.027634 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 30 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 30, density_C = 5.436, diameter_avg = 83.477, radius_avg = 41.738 
+Clustering time: 13767, MMC time: 391, TopK time: 72, Total time: 14230
+Total time without IO: 14264 microsecond, 14.264000 millisecond, 0.014264 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 197754, MMC time: 2792, TopK time: 126, Total time: 200672
+Total time without IO: 200871 microsecond, 200.871002 millisecond, 0.200871 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 151762, MMC time: 2622, TopK time: 124, Total time: 154508
+Total time without IO: 154690 microsecond, 154.690002 millisecond, 0.154690 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 152864, MMC time: 2673, TopK time: 121, Total time: 155658
+Total time without IO: 155832 microsecond, 155.832001 millisecond, 0.155832 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 151579, TopK time: 349500, Total time: 501079
+Total time without IO: 501266 microsecond, 501.265991 millisecond, 0.501266 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 152940, TopK time: 341684, Total time: 494624
+Total time without IO: 494816 microsecond, 494.816010 millisecond, 0.494816 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 30, density_Ck = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 151623, TopK time: 342707, Total time: 494330
+Total time without IO: 494519 microsecond, 494.519012 millisecond, 0.494519 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 153966, MMC time: 2608, TopK time: 109, Total time: 156683
+Total time without IO: 156857 microsecond, 156.856995 millisecond, 0.156857 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 156548, MMC time: 3099, TopK time: 101, Total time: 159748
+Total time without IO: 159949 microsecond, 159.949005 millisecond, 0.159949 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 30 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 30, density_C = 7.554, diameter_avg = 67.319, radius_avg = 33.659 
+Clustering time: 370300, MMC time: 2668, TopK time: 100, Total time: 373068
+Total time without IO: 373252 microsecond, 373.252014 millisecond, 0.373252 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 25763, MMC time: 1019, TopK time: 253, Total time: 27035
+Total time without IO: 27108 microsecond, 27.108000 millisecond, 0.027108 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 26037, MMC time: 983, TopK time: 290, Total time: 27310
+Total time without IO: 27452 microsecond, 27.452000 millisecond, 0.027452 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 25915, MMC time: 975, TopK time: 252, Total time: 27142
+Total time without IO: 27211 microsecond, 27.211000 millisecond, 0.027211 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 25801, TopK time: 384277, Total time: 410078
+Total time without IO: 410691 microsecond, 410.691010 millisecond, 0.410691 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 26530, TopK time: 235873, Total time: 262403
+Total time without IO: 262513 microsecond, 262.513000 millisecond, 0.262513 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 25517, TopK time: 230519, Total time: 256036
+Total time without IO: 256135 microsecond, 256.135010 millisecond, 0.256135 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 26311, MMC time: 995, TopK time: 81, Total time: 27387
+Total time without IO: 27457 microsecond, 27.457001 millisecond, 0.027457 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 26309, MMC time: 984, TopK time: 81, Total time: 27374
+Total time without IO: 27443 microsecond, 27.443001 millisecond, 0.027443 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 40 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 40, density_C = 1715.005, diameter_avg = 1.909, radius_avg = 0.954 
+Clustering time: 26244, MMC time: 1009, TopK time: 81, Total time: 27334
+Total time without IO: 27399 microsecond, 27.399000 millisecond, 0.027399 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 71251, MMC time: 2845, TopK time: 227, Total time: 74323
+Total time without IO: 74537 microsecond, 74.537003 millisecond, 0.074537 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 71843, MMC time: 2794, TopK time: 226, Total time: 74863
+Total time without IO: 75076 microsecond, 75.075996 millisecond, 0.075076 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 73357, MMC time: 2824, TopK time: 228, Total time: 76409
+Total time without IO: 76619 microsecond, 76.619003 millisecond, 0.076619 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 70212, TopK time: 1843578, Total time: 1913790
+Total time without IO: 1914726 microsecond, 1914.725952 millisecond, 1.914726 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 70940, TopK time: 1242661, Total time: 1313601
+Total time without IO: 1313924 microsecond, 1313.923950 millisecond, 1.313924 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 77083, TopK time: 1210462, Total time: 1287545
+Total time without IO: 1288555 microsecond, 1288.555054 millisecond, 1.288555 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 112393, MMC time: 2976, TopK time: 159, Total time: 115528
+Total time without IO: 115755 microsecond, 115.754997 millisecond, 0.115755 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 110877, MMC time: 5701, TopK time: 384, Total time: 116962
+Total time without IO: 117797 microsecond, 117.796997 millisecond, 0.117797 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 40 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 40, density_C = 8883.344, diameter_avg = 0.139, radius_avg = 0.070 
+Clustering time: 172124, MMC time: 3983, TopK time: 196, Total time: 176303
+Total time without IO: 176579 microsecond, 176.578995 millisecond, 0.176579 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 29395, MMC time: 656, TopK time: 172, Total time: 30223
+Total time without IO: 30331 microsecond, 30.330999 millisecond, 0.030331 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 14344, MMC time: 631, TopK time: 146, Total time: 15121
+Total time without IO: 15241 microsecond, 15.241000 millisecond, 0.015241 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 24786, MMC time: 369, TopK time: 119, Total time: 25274
+Total time without IO: 25314 microsecond, 25.313999 millisecond, 0.025314 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 13768, TopK time: 5345, Total time: 19113
+Total time without IO: 19143 microsecond, 19.143000 millisecond, 0.019143 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 21433, TopK time: 5306, Total time: 26739
+Total time without IO: 26770 microsecond, 26.770000 millisecond, 0.026770 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 13671, TopK time: 5696, Total time: 19367
+Total time without IO: 19389 microsecond, 19.389000 millisecond, 0.019389 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 31360, MMC time: 430, TopK time: 123, Total time: 31913
+Total time without IO: 31955 microsecond, 31.955000 millisecond, 0.031955 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 12439, MMC time: 248, TopK time: 56, Total time: 12743
+Total time without IO: 12764 microsecond, 12.764000 millisecond, 0.012764 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 40 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 40, density_C = 6.643, diameter_avg = 88.041, radius_avg = 44.020 
+Clustering time: 10258, MMC time: 311, TopK time: 57, Total time: 10626
+Total time without IO: 10650 microsecond, 10.650000 millisecond, 0.010650 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 180191, MMC time: 2935, TopK time: 180, Total time: 183306
+Total time without IO: 183604 microsecond, 183.604004 millisecond, 0.183604 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 193518, MMC time: 2920, TopK time: 175, Total time: 196613
+Total time without IO: 196803 microsecond, 196.802994 millisecond, 0.196803 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 162002, MMC time: 2810, TopK time: 169, Total time: 164981
+Total time without IO: 165166 microsecond, 165.166000 millisecond, 0.165166 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 168566, TopK time: 618442, Total time: 787008
+Total time without IO: 787202 microsecond, 787.202026 millisecond, 0.787202 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 159517, TopK time: 591635, Total time: 751152
+Total time without IO: 751428 microsecond, 751.427979 millisecond, 0.751428 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 40, density_Ck = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 154841, TopK time: 701737, Total time: 856578
+Total time without IO: 856774 microsecond, 856.773987 millisecond, 0.856774 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 156467, MMC time: 2676, TopK time: 124, Total time: 159267
+Total time without IO: 159439 microsecond, 159.438995 millisecond, 0.159439 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 157426, MMC time: 2645, TopK time: 124, Total time: 160195
+Total time without IO: 160372 microsecond, 160.371994 millisecond, 0.160372 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 40 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 40, density_C = 9.772, diameter_avg = 66.273, radius_avg = 33.136 
+Clustering time: 158624, MMC time: 2640, TopK time: 123, Total time: 161387
+Total time without IO: 161570 microsecond, 161.570007 millisecond, 0.161570 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25639, MMC time: 987, TopK time: 308, Total time: 26934
+Total time without IO: 27014 microsecond, 27.014000 millisecond, 0.027014 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25966, MMC time: 977, TopK time: 304, Total time: 27247
+Total time without IO: 27321 microsecond, 27.320999 millisecond, 0.027321 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 31807, MMC time: 980, TopK time: 303, Total time: 33090
+Total time without IO: 33164 microsecond, 33.164001 millisecond, 0.033164 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25815, TopK time: 327531, Total time: 353346
+Total time without IO: 353457 microsecond, 353.457001 millisecond, 0.353457 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25620, TopK time: 318602, Total time: 344222
+Total time without IO: 344331 microsecond, 344.330994 millisecond, 0.344331 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25718, TopK time: 331779, Total time: 357497
+Total time without IO: 357707 microsecond, 357.707001 millisecond, 0.357707 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 27301, MMC time: 971, TopK time: 104, Total time: 28376
+Total time without IO: 28446 microsecond, 28.445999 millisecond, 0.028446 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 26424, MMC time: 990, TopK time: 103, Total time: 27517
+Total time without IO: 27592 microsecond, 27.591999 millisecond, 0.027592 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Brightkite, 0.6, 5, 50, 50 *** 
+	n = 51406; m = 197167
+	*** Finished loading graph!
+	*** Phase-I, 133 GSGs
+	*** k = 50, density_C = 1734.571, diameter_avg = 5.874, radius_avg = 2.937 
+Clustering time: 25936, MMC time: 1006, TopK time: 104, Total time: 27046
+Total time without IO: 27126 microsecond, 27.125999 millisecond, 0.027126 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 236820, MMC time: 8739, TopK time: 674, Total time: 246233
+Total time without IO: 247438 microsecond, 247.438004 millisecond, 0.247438 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 95051, MMC time: 2861, TopK time: 291, Total time: 98203
+Total time without IO: 98447 microsecond, 98.446999 millisecond, 0.098447 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 292855, MMC time: 5720, TopK time: 460, Total time: 299035
+Total time without IO: 299848 microsecond, 299.847992 millisecond, 0.299848 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 70702, TopK time: 1968661, Total time: 2039363
+Total time without IO: 2039590 microsecond, 2039.589966 millisecond, 2.039590 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 70454, TopK time: 1730820, Total time: 1801274
+Total time without IO: 1801498 microsecond, 1801.498047 millisecond, 1.801498 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 113793, TopK time: 1789772, Total time: 1903565
+Total time without IO: 1903818 microsecond, 1903.817993 millisecond, 1.903818 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 71961, MMC time: 2871, TopK time: 182, Total time: 75014
+Total time without IO: 75225 microsecond, 75.224998 millisecond, 0.075225 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 71235, MMC time: 2896, TopK time: 185, Total time: 74316
+Total time without IO: 74545 microsecond, 74.544998 millisecond, 0.074545 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Gowalla, 0.6, 5, 50, 50 *** 
+	n = 107092; m = 456830
+	*** Finished loading graph!
+	*** Phase-I, 575 GSGs
+	*** k = 50, density_C = 9626.612, diameter_avg = 0.147, radius_avg = 0.073 
+Clustering time: 71753, MMC time: 2808, TopK time: 183, Total time: 74744
+Total time without IO: 74953 microsecond, 74.953003 millisecond, 0.074953 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8772, MMC time: 242, TopK time: 76, Total time: 9090
+Total time without IO: 9110 microsecond, 9.110000 millisecond, 0.009110 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8575, MMC time: 243, TopK time: 75, Total time: 8893
+Total time without IO: 8911 microsecond, 8.911000 millisecond, 0.008911 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8771, MMC time: 250, TopK time: 76, Total time: 9097
+Total time without IO: 9116 microsecond, 9.116000 millisecond, 0.009116 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 42, density_Ck = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8429, TopK time: 305, Total time: 8734
+Total time without IO: 8749 microsecond, 8.749000 millisecond, 0.008749 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 42, density_Ck = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8526, TopK time: 299, Total time: 8825
+Total time without IO: 8839 microsecond, 8.839000 millisecond, 0.008839 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** k = 42, density_Ck = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8542, TopK time: 356, Total time: 8898
+Total time without IO: 8913 microsecond, 8.913000 millisecond, 0.008913 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8956, MMC time: 257, TopK time: 54, Total time: 9267
+Total time without IO: 9287 microsecond, 9.287000 millisecond, 0.009287 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 8822, MMC time: 243, TopK time: 53, Total time: 9118
+Total time without IO: 9137 microsecond, 9.137000 millisecond, 0.009137 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn1, 0.6, 5, 50, 50 *** 
+	n = 10000; m = 97750
+	*** Finished loading graph!
+	*** Phase-I, 42 GSGs
+	*** k = 42, density_C = 6.806, diameter_avg = 90.343, radius_avg = 45.172 
+Clustering time: 9375, MMC time: 238, TopK time: 54, Total time: 9667
+Total time without IO: 9686 microsecond, 9.686000 millisecond, 0.009686 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 156494, MMC time: 2679, TopK time: 211, Total time: 159384
+Total time without IO: 159568 microsecond, 159.567993 millisecond, 0.159568 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 155300, MMC time: 2631, TopK time: 208, Total time: 158139
+Total time without IO: 158321 microsecond, 158.320999 millisecond, 0.158321 second
+**** Geo-Social Group Detection (Release): greedy, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 154535, MMC time: 2660, TopK time: 215, Total time: 157410
+Total time without IO: 157590 microsecond, 157.589996 millisecond, 0.157590 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 152963, TopK time: 852756, Total time: 1005719
+Total time without IO: 1005910 microsecond, 1005.909973 millisecond, 1.005910 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 192364, TopK time: 861761, Total time: 1054125
+Total time without IO: 1054322 microsecond, 1054.322021 millisecond, 1.054322 second
+**** Geo-Social Group Detection (Release): swap, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** k = 50, density_Ck = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 166632, TopK time: 860339, Total time: 1026971
+Total time without IO: 1027163 microsecond, 1027.162964 millisecond, 1.027163 second
+*********************************************************************************
+*********************************************************************************
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 171861, MMC time: 2713, TopK time: 166, Total time: 174740
+Total time without IO: 174923 microsecond, 174.923004 millisecond, 0.174923 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 419549, MMC time: 2845, TopK time: 168, Total time: 422562
+Total time without IO: 422768 microsecond, 422.768005 millisecond, 0.422768 second
+**** Geo-Social Group Detection (Release): topk, ../../data/Syn2, 0.6, 5, 50, 50 *** 
+	n = 100000; m = 980295
+	*** Finished loading graph!
+	*** Phase-I, 372 GSGs
+	*** k = 50, density_C = 11.924, diameter_avg = 68.069, radius_avg = 34.034 
+Clustering time: 234192, MMC time: 6970, TopK time: 494, Total time: 241656
+Total time without IO: 242692 microsecond, 242.692001 millisecond, 0.242692 second
+*********************************************************************************

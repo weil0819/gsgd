@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 #include <sstream>
 #include <iostream>
 #include <queue>
